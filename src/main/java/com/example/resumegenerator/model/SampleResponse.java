@@ -1,4 +1,4 @@
-package com.example.resumegeneratorbackend.model;
+package com.example.resumegenerator.model;
 
 public class SampleResponse {
 

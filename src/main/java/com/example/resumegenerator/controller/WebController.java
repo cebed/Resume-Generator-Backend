@@ -1,10 +1,10 @@
-package com.example.resumegeneratorbackend.controller;
+package com.example.resumegenerator.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.resumegeneratorbackend.model.SampleResponse;
+import com.example.resumegenerator.model.SampleResponse;
 
 @RestController
 public class WebController {
