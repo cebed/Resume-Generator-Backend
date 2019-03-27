@@ -1,4 +1,4 @@
-package com.techprimers.topic;
+package com.example.resumegeneratorbackend.topic;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.techprimers.topic;
+package com.example.resumegeneratorbackend.topic;
 
 public class Topic {
 
