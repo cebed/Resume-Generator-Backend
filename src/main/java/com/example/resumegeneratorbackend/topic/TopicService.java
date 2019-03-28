@@ -15,7 +15,7 @@ public class TopicService {
 
 private List<Topic>  topics = new ArrayList<>
 	 (Arrays.asList(
-			new Topic ("hej","på","dig"),
+			new Topic ("Demorgans","på","dig"),
 			new Topic ("hej2","på","dig"),
 			new Topic ("hej3","på","dig")		
 			));
