@@ -12,7 +12,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>resumegenerator-backendd</artifactId>
+    <artifactId>resumegenerator-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>resumegenerator-backend</name>
     <description>Backend Resume-generator for degreeproject</description>
