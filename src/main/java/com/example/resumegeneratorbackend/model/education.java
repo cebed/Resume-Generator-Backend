@@ -4,12 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
-public class Users  {
+public class education {
+
 
     @Id
     @Getter
@@ -19,24 +18,18 @@ public class Users  {
     private Integer id;
     @Getter
     @Setter
-    @Column(name = "fullName")
-    private String fullName;
+    @Column(name = "title")
+    private String title;
     @Getter
     @Setter
-    @Column(name = "email")
-    private String email;
+    @Column(name = "start_date")
+    private String start_date;
     @Getter
     @Setter
-    @Column(name = "password")
-    private String password;
+    @Column(name = "end_date")
+    private Integer end_date;
     @Getter
     @Setter
-    @Column(name = "adminOrUser")
-    private boolean adminOrUser;
-    @Getter
-    @Setter
-    @Column(name = "image")
-    private boolean image;
-
-
+    @Column(name = "description")
+    private Integer description;
 }
