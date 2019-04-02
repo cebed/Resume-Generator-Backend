@@ -1,14 +1,18 @@
 package com.example.resumegeneratorbackend.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-public class education {
 
+@Entity
+@Table(name = "others")
+public class Others {
 
     @Id
     @Getter
@@ -22,14 +26,6 @@ public class education {
     private String title;
     @Getter
     @Setter
-    @Column(name = "start_date")
-    private String start_date;
-    @Getter
-    @Setter
-    @Column(name = "end_date")
-    private Integer end_date;
-    @Getter
-    @Setter
     @Column(name = "description")
-    private Integer description;
+    private String description;
 }
