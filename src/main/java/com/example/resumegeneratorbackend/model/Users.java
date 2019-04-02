@@ -9,34 +9,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Users  {
+public class Users {
 
     @Id
-    @Getter
-    @Setter
     @GeneratedValue
     @Column(name = "id")
     private Integer id;
-    @Getter
-    @Setter
+
     @Column(name = "fullName")
     private String fullName;
-    @Getter
-    @Setter
+
     @Column(name = "email")
     private String email;
-    @Getter
-    @Setter
     @Column(name = "password")
     private String password;
-    @Getter
-    @Setter
-    @Column(name = "adminOrUser")
-    private boolean adminOrUser;
-    @Getter
-    @Setter
-    @Column(name = "image")
-    private boolean image;
 
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

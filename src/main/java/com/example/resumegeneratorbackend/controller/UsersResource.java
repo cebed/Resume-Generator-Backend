@@ -3,6 +3,7 @@ package com.example.resumegeneratorbackend.controller;
 import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +20,24 @@ public class UsersResource {
         return usersRepository.findAll();
     }
 
-    @PostMapping(value = "/load")
-    public List<Users> persist(@RequestBody final Users users) {
+    @PostMapping(path = "/load", produces = MediaType.APPLICATION_XML_VALUE)
+    public void persist(@RequestBody  Users users) {
+
         usersRepository.save(users);
-        return usersRepository.findAll();
+
     }
+
+    // denna metoden gör att man kan registerara sig genom enadst att skriva email.
+    //anledningen är att att jag har misslyckat att skicka över ett object från front enden som motsvar
+    // user
+    @PostMapping(path = "/email", produces = MediaType.APPLICATION_XML_VALUE)
+    public void Register(@RequestBody String email) {
+        Users n = new Users();
+        n.setEmail(email);
+        usersRepository.save(n);
+    }
+
+
+
 
 }
