@@ -14,14 +14,6 @@ public class UsersController {
 
     @Autowired
     private userServices userServices;
-/*
-    @GetMapping(value = "/all")
-    public List<Users> getAll() {
-
-        return userServices.getAllUsers();
-    }
-
- */
 
      // tillfällig register metod finns på services
     @PostMapping(path = "/register", produces = MediaType.APPLICATION_XML_VALUE)
