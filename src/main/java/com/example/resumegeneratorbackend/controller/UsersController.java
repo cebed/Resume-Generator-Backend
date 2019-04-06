@@ -15,10 +15,20 @@ public class UsersController {
     @Autowired
     private userServices userServices;
 
+    @GetMapping(value = "/all")
+    public List<Users> getAll() {
+
+        return userServices.getAllUsers();
+    }
+
      // tillfällig register metod finns på services
     @PostMapping(path = "/register", produces = MediaType.APPLICATION_XML_VALUE)
     public String Register(@RequestBody String email) {
        return userServices.Register(email);
     }
-
+    // tillfällig login metod finns på services
+    @PostMapping(path = "/login", produces = MediaType.APPLICATION_XML_VALUE)
+    public String Login(@RequestBody String email) {
+        return userServices.Login(email);
+    }
 }
