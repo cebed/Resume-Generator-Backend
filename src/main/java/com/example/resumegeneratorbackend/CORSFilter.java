@@ -13,7 +13,7 @@ import java.io.IOException;
  * (Cross-Origin Resource Sharing) specification,
  * which is a mechanism that enables cross-origin requests.
  *
- */
+
 public class CORSFilter extends GenericFilterBean implements Filter {
 
     @Override
@@ -23,7 +23,7 @@ public class CORSFilter extends GenericFilterBean implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setHeader("Access-Control-Allow-Origin", "*");
         httpResponse.setHeader("Access-Control-Allow-Methods", "*");
-//        httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+//      httpResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
 
         httpResponse.setHeader("Access-Control-Allow-Headers", "*");
 //        httpResponse.setHeader("Access-Control-Allow-Headers",
@@ -39,3 +39,5 @@ public class CORSFilter extends GenericFilterBean implements Filter {
 
 
 } // The End...
+
+ */

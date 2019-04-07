@@ -1,25 +1,43 @@
 package com.example.resumegeneratorbackend.model;
 
-import lombok.Getter;
-import lombok.Setter;
+//import lombok.Getter;
+//import lombok.Setter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 
 @Entity
-public class Users {
+
+public class Users implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
+    @NotBlank(message = "Please enter full name")
     @Column(name = "fullName")
     private String fullName;
 
-    @Column(name = "email")
-    private String email;
+    @Email(message = "Username needs to be an email")
+    @NotBlank(message = "email is required")
+    @Column(unique = true)
+
+    private String username;//this instance represents the email of the user
+
+
+    @NotBlank(message = "password is required")
     @Column(name = "password")
     private String password;
+
+    @Transient
+    private String confirmPassword;
 
     @Column(name = "PHONE")
     private String phone;
@@ -58,25 +76,27 @@ public class Users {
     @ManyToOne
     private  Courses courses_id;
 
+    //Constructor
+    public Users(){
 
-
-
-
-
-    public String getEmail() {
-
-        return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+
+
+    public String getUsername() {
+
+        return username;
     }
 
-    public Integer getId() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -96,4 +116,47 @@ public class Users {
         this.password = password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    /*
+    Userdetails interface methods
+     */
+
+
+    //denna används när man har flera roller exvis admin o user
+    @Override
+    @JsonIgnore //ignorerar dessa fält i postman när vi exvis får tillbaka objektet av en skapad user
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isEnabled() {
+        return true;
+    }
 }
