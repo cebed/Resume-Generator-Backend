@@ -71,7 +71,6 @@ public class UsersController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody Users user, BindingResult result){
-        //Här ska validation av password match fixas
 
         ResponseEntity<?> errorMap = storeValidationErrorService.StoreValidationErrorService((result));
         if(errorMap!= null)

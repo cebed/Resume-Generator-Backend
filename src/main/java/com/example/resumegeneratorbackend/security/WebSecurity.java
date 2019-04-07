@@ -75,7 +75,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(SIGN_UP_URLS).permitAll()
                 .anyRequest().authenticated();
 
-        //http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 }
