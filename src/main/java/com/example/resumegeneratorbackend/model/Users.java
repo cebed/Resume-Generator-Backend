@@ -25,19 +25,20 @@ public class Users implements UserDetails {
     @Column(name = "fullName")
     private String fullName;
 
-    @Email(message = "Username needs to be an email")
-    @NotBlank(message = "email is required")
-    @Column(unique = true)
 
+
+    @Email(message = "Username needs to be an email")
+    @NotBlank(message = "Email is required")
+    @Column(unique = true)
     private String username;//this instance represents the email of the user
 
 
-    @NotBlank(message = "password is required")
+    @NotBlank(message = "Password is required")
     @Column(name = "password")
     private String password;
 
-    @Transient
-    private String confirmPassword;
+    //@Transient
+    //private String confirmPassword;
 
     @Column(name = "PHONE")
     private String phone;
@@ -116,13 +117,16 @@ public class Users implements UserDetails {
         this.password = password;
     }
 
+    /*
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
+
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+    */
 
     /*
     Userdetails interface methods

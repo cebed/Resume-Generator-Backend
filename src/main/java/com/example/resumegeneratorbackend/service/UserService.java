@@ -36,7 +36,6 @@ public class UserService {
             //Username has to be unique(exception handler)
             newuser.setUsername(newuser.getUsername());
 
-            //Make sure that password and confirm Password match
             //We do not pesist or show the confirm password
             return usersRepository.save(newuser);
 

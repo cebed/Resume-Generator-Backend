@@ -9,6 +9,10 @@ import org.springframework.validation.FieldError;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+ * This class binds the result from the header and puts the error in a map
+ */
+
 @Service
 public class StoreValidationErrorService {
 

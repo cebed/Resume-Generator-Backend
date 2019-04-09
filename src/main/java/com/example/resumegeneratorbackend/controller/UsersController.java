@@ -28,6 +28,7 @@ import java.util.List;
 import static com.example.resumegeneratorbackend.security.SecurityCockpit.TOKEN_PREFIX;
 
 @RestController
+@CrossOrigin
 @RequestMapping("api/users")
 public class UsersController {
 
