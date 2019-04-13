@@ -17,7 +17,7 @@ import java.util.Collection;
 public class Users implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
@@ -37,8 +37,10 @@ public class Users implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    //@Transient
-    //private String confirmPassword;
+
+    @Column(name="Address")
+    private String address;
+
 
     @Column(name = "PHONE")
     private String phone;
@@ -117,18 +119,25 @@ public class Users implements UserDetails {
         this.password = password;
     }
 
-    /*
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-    */
 
-    /*
+  /*
     Userdetails interface methods
      */
 

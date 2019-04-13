@@ -5,10 +5,9 @@ import com.example.resumegeneratorbackend.model.Users;
 
 import com.example.resumegeneratorbackend.payloads.JWTLoginSuccessRes;
 import com.example.resumegeneratorbackend.payloads.LoginRequests;
+import com.example.resumegeneratorbackend.repository.UsersRepository;
 import com.example.resumegeneratorbackend.security.JwtTokenProvider;
 import com.example.resumegeneratorbackend.service.UserService;
-import com.example.resumegeneratorbackend.service.StoreValidationErrorService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 
 import javax.validation.Valid;
@@ -36,13 +34,14 @@ public class UsersController {
     private UserService userServices;
 
     @Autowired
-    private StoreValidationErrorService storeValidationErrorService;
-
-    @Autowired
     private JwtTokenProvider tokenProvider;
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UsersRepository usersRepository;
+
 
     @GetMapping(value = "/all")
     public List<Users> getAll() {
@@ -52,7 +51,7 @@ public class UsersController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequests loginRequest, BindingResult result){
-        ResponseEntity<?> errorMap = storeValidationErrorService.StoreValidationErrorService(result);
+        ResponseEntity<?> errorMap = userServices.StoreValidationErrorService(result);
         if(errorMap != null) return errorMap;
 
         Authentication authentication = authenticationManager.authenticate(
@@ -69,32 +68,42 @@ public class UsersController {
         return ResponseEntity.ok(new JWTLoginSuccessRes(true, jwt));
     }
 
+    @GetMapping("{us_id}")
+    public ResponseEntity<?> getUsByID(@PathVariable Long us_id){
+
+        Users users = userServices.findById(us_id);
+        return new ResponseEntity<Users>(users, HttpStatus.OK);
+    }
+
+
+    @PutMapping("/allusers/{id}")
+    public Users updateUser(@RequestBody Users u, @PathVariable Long id) {
+
+
+        return usersRepository.findById(id)
+                .map(users -> {
+                    users.setFullName(u.getFullName());
+                    users.setUsername(u.getUsername());
+                    users.setAddress(u.getAddress());
+                    users.setPhone(u.getPhone());
+                    return usersRepository.save(users);
+                })
+                .orElseGet(() -> {
+                    u.setId(id);
+                    return usersRepository.save(u);
+                });
+    }
+
+
+
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody Users user, BindingResult result){
+    public Users registerUser(@Valid @RequestBody Users user){
 
-        ResponseEntity<?> errorMap = storeValidationErrorService.StoreValidationErrorService((result));
-        if(errorMap!= null)
-            return errorMap;
-
-        Users newuser = userServices.saveUser(user);
-
-        return new ResponseEntity<Users>(newuser, HttpStatus.CREATED);
-
+        return  userServices.saveUser(user);
 
     }
 
-
-
-
-
-    /*
-     // tillfällig register metod finns på services
-    @PostMapping(path = "/register", produces = MediaType.APPLICATION_XML_VALUE)
-    public String Register(@RequestBody String username) {
-       return userServices.Register(username);
-    }
-    */
 
 
     /*

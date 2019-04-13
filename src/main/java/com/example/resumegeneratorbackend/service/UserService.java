@@ -4,10 +4,17 @@ import com.example.resumegeneratorbackend.ExceptionHandler.UsernameOrEmailExistE
 import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class UserService {
 
@@ -22,9 +29,23 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
+
+    public Users saveOrUpdate(Users users){
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+        return usersRepository.save((users));
+    }
+
+    public Users findById(Long id){
+        return usersRepository.getById(id);
+    }
+
+
+
     /*
     This method takes a user, I mean the new user that we are going to create
      */
+
+
     public Users saveUser(Users newuser){
 
 
@@ -49,6 +70,25 @@ public class UserService {
         return usersRepository.findAll();
     }
 
+
+    /*
+        This method returns a better error respone
+        Can be called in controller class.
+     */
+    public ResponseEntity<?> StoreValidationErrorService(BindingResult result){
+
+        if(result.hasErrors()){
+            Map<String, String> errorMap = new HashMap<>();
+
+            for(FieldError error: result.getFieldErrors()){
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+            return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
+    }
+
+        return null;
+
+    }
 
 
     // denna metoden gör att man kan registerara sig genom enadst att skriva email.
