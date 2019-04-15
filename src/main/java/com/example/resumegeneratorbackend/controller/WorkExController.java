@@ -4,6 +4,7 @@ import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.model.Workexperience;
 
 import com.example.resumegeneratorbackend.repository.WorkRepository;
+import com.example.resumegeneratorbackend.service.WorkexperienceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import java.util.List;
 public class WorkExController {
 
     @Autowired
-    private WorkRepository workRepository;
+    private WorkexperienceService workexperienceService;
 
 
 
@@ -27,7 +28,7 @@ public class WorkExController {
     @GetMapping(value = "/all")
     public List<Workexperience> getAll() {
 
-        return workRepository.findAll();
+        return workexperienceService.getAll();
     }
 
 
@@ -35,7 +36,7 @@ public class WorkExController {
     @PostMapping("/register")
     public Workexperience registerUser(@Valid @RequestBody Workexperience workexperience){
 
-        return  workRepository.save(workexperience);
+        return  workexperienceService.Register((workexperience));
 
     }
 
