@@ -55,29 +55,6 @@ public class Users implements UserDetails {
     private int Image;
 
 
-    @JoinColumn(name = "EDUCATION_id", referencedColumnName = "id")
-    @ManyToOne
-    private Education education_id;
-
-    @JoinColumn(name = "WORKEXPERIENCE_id", referencedColumnName = "id")
-    @ManyToOne
-    private Workexperience workexperience_id;
-
-    @JoinColumn(name = "SKILLS_id", referencedColumnName = "id")
-    @ManyToOne
-    private Skills skills_id;
-
-    @JoinColumn(name = "LANGUAGES_id", referencedColumnName = "id")
-    @ManyToOne
-    private Languages languages_id;
-
-    @JoinColumn(name = "OTHERS_id", referencedColumnName = "id")
-    @ManyToOne
-    private Others others_id;
-
-    @JoinColumn(name = "COURSES_id", referencedColumnName = "id")
-    @ManyToOne
-    private  Courses courses_id;
 
     //Constructor
     public Users(){

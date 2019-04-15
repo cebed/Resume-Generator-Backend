@@ -4,11 +4,7 @@ package com.example.resumegeneratorbackend.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Skills")
@@ -28,4 +24,8 @@ public class Skills {
     @Setter
     @Column(name = "level")
     private String level;
+
+    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
+    @ManyToOne
+    private  Users USER_ID;
 }

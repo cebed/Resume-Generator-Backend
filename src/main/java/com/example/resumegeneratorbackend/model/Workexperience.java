@@ -33,16 +33,16 @@ public class Workexperience {
     @Column(name = "description")
     private String description;
 
-    @JoinColumn(name = "USERS_id", referencedColumnName = "id")
+    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
     @ManyToOne
-    private  Users courses_id;
+    private  Users USER_ID;
 
-    public Users getCourses_id() {
-        return courses_id;
+    public Users getUSER_ID() {
+        return USER_ID;
     }
 
-    public void setCourses_id(Users courses_id) {
-        this.courses_id = courses_id;
+    public void setUSER_ID(Users USER_ID) {
+        this.USER_ID = USER_ID;
     }
 
     public Integer getId() {
