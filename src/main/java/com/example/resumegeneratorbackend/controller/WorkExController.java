@@ -36,10 +36,15 @@ public class WorkExController {
     @PostMapping("/register")
     public Workexperience registerUser(@Valid @RequestBody Workexperience workexperience){
 
-        return  workexperienceService.Register((workexperience));
+        return  workexperienceService.Register(workexperience);
 
     }
 
+    @GetMapping("/workid/{id}")
+    public List<Workexperience> byId(@Valid @PathVariable int id){
 
+        return  workexperienceService.getbyid(id);
+
+    }
 
 }

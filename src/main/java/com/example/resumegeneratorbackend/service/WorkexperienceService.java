@@ -43,7 +43,7 @@ public class WorkexperienceService {
     public List<Workexperience> getbyid(int id) {
         List<Workexperience> byId = new LinkedList<>();
         for(Workexperience u : getAll()){
-            if(id==u.getId()) {
+            if(id==u.getUSER_ID().getId()) {
 
                 byId.add(u);
             }
