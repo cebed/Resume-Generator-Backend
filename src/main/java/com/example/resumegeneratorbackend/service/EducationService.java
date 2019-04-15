@@ -1,0 +1,48 @@
+package com.example.resumegeneratorbackend.service;
+
+import com.example.resumegeneratorbackend.model.Education;
+import com.example.resumegeneratorbackend.repository.EducationRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+public class EducationService {
+
+    @Autowired
+    private EducationRepository educationRepository;
+
+
+
+
+    public List<Education> getAll() {
+
+        return educationRepository.findAll();
+    }
+
+
+    public Education registerEdu(Education education) {
+
+        return  educationRepository.save(education);
+    }
+
+
+    public List<Education> getbyid(Long id) {
+        List<Education> byId = new LinkedList<>();
+        for(Education u : getAll()){
+            if(id==u.getUSER_ID().getId()) {
+
+                byId.add(u);
+            }
+        }
+        if(!byId.isEmpty()){
+            System.out.println("??????????????????????????????????????????????????????????????? ja" );
+            return byId;
+        }
+        else {
+            System.out.println("??????????????????????????????????????????????????????????????? nej" );
+            return null;
+        }
+    }
+}
