@@ -12,8 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 
+//needs to implement the UserDetails interface so that we can use it for some of the validation steps and the authorization steps
 @Entity
-
 public class Users implements UserDetails {
 
     @Id
@@ -29,11 +29,11 @@ public class Users implements UserDetails {
 
     @Email(message = "Username needs to be an email")
     @NotBlank(message = "Email is required")
-    @Column(unique = true , length = 250)
+    @Column(unique = true)
     private String username;//this instance represents the email of the user
 
 
-    //@NotBlank(message = "Password is required")
+    @NotBlank(message = "Password is required")
     @Column(name = "password")
     private String password;
 
@@ -126,6 +126,8 @@ public class Users implements UserDetails {
         return null;
     }
 
+
+    //this is set to true because if it false then it is used to handle accounts that expires becasue of payment
     @Override
     @JsonIgnore
     public boolean isAccountNonExpired() {
