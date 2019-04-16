@@ -76,7 +76,7 @@ public class UsersController {
     }
 
 
-    @PostMapping("/allusers/{id}")
+    @PutMapping("/allusers/{id}")
     public Users updateUser(@RequestBody Users u, @PathVariable Long id) {
 
 
