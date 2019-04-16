@@ -1,13 +1,10 @@
 package com.example.resumegeneratorbackend.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 @Entity
 @Table(name = "Education")
@@ -15,25 +12,71 @@ public class Education {
 
 
     @Id
-    @Getter
-    @Setter
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
-    @Getter
-    @Setter
-    @Column(name = "title")
-    private String title;
-    @Getter
-    @Setter
-    @Column(name = "start_date")
-    private String start_date;
-    @Getter
-    @Setter
-    @Column(name = "end_date")
-    private Integer end_date;
-    @Getter
-    @Setter
+    private Long id;
+
     @Column(name = "description")
-    private Integer description;
+    @NotBlank(message = "Description is required")
+    private String description;
+
+    @Column(name = "startDate")
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date start_date;
+
+    @Column(name = "EndDate")
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private Date end_date;
+
+
+    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
+    @ManyToOne
+    private  Users USER_ID;
+
+
+    //constructor
+    public Education(){
+
+    }
+
+    public Users getUSER_ID() {
+        return USER_ID;
+    }
+
+    public void setUSER_ID(Users USER_ID) {
+        this.USER_ID = USER_ID;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(Date start_date) {
+        this.start_date = start_date;
+    }
+
+    public Date getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(Date end_date) {
+        this.end_date = end_date;
+    }
 }

@@ -33,7 +33,7 @@ public class Users implements UserDetails {
     private String username;//this instance represents the email of the user
 
 
-    @NotBlank(message = "Password is required")
+    //@NotBlank(message = "Password is required")
     @Column(name = "password")
     private String password;
 
