@@ -28,3 +28,5 @@ HELP.md
 ### VS Code ###
 .vscode/
 **/application-dev.yml
+application-dev.yml
+src/main/resources/application-dev.yml
