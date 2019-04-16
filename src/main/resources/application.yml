@@ -1,12 +1,15 @@
+
 spring:
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/exjobb2019?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://aayira9igsl97b.c8nbcjdtf2k8.eu-central-1.rds.amazonaws.com/innodb
 
     username: root
-    password: 117028Nur
+    password: nurhusein
 
   jpa:
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
+server:
+  port: 5005

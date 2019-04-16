@@ -8,7 +8,7 @@ spring:
     password: 117028Nur
 
   jpa:
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
 server:
