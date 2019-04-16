@@ -76,7 +76,7 @@ public class UsersController {
     }
 
 
-    @PutMapping("/allusers/{id}")
+    @PostMapping("/allusers/{id}")
     public Users updateUser(@RequestBody Users u, @PathVariable Long id) {
 
 
@@ -103,6 +103,8 @@ public class UsersController {
         return  userServices.saveUser(user);
 
     }
+
+
 
 
 

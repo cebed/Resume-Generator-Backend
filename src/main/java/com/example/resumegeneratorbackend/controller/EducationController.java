@@ -4,14 +4,18 @@ import com.example.resumegeneratorbackend.model.Education;
 import com.example.resumegeneratorbackend.service.EducationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+
+
 @RestController
-@CrossOrigin
 @RequestMapping("api/edu")
+@CrossOrigin
 public class EducationController {
 
 
@@ -21,7 +25,7 @@ public class EducationController {
 
 
     @GetMapping(value = "/all")
-    public List<Education> getAll() {
+    public Iterable<Education> getAll() {
 
         return educationService.getAll();
     }
@@ -35,11 +39,8 @@ public class EducationController {
 
     }
 
-    @GetMapping("/eduid/{id}")
-    public List<Education> byId(@Valid @PathVariable Long id){
 
-        return  educationService.getbyid(id);
 
-    }
 
 }
+
