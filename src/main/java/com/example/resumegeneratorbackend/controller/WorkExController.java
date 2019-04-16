@@ -65,4 +65,13 @@ public class WorkExController {
 
     }
 
+
+    @DeleteMapping  ("/delete/{id}")
+    public String deleteWorExpeience(@PathVariable int id) {
+        System.out.println("________________---------------------");
+
+        return workexperienceService.deleteWorExpeience(id);
+
+    }
+
 }

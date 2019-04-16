@@ -88,4 +88,14 @@ public class WorkexperienceService {
     }
 
 
+    public String deleteWorExpeience(Integer id) {
+
+
+        workRepository.deleteById(id);
+        return "kaos";
+
+    }
+
+
+
 }
