@@ -1,5 +1,6 @@
 package com.example.resumegeneratorbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,28 +12,25 @@ public class Workexperience {
 
 
     @Id
-    @Getter
-    @Setter
     @GeneratedValue
+    @Column(name = "id_workexperience")
+    private Integer id_workExperience;
+
+// observera att detta fält referar till user objectet
     @Column(name = "id")
     private Integer id;
-    @Getter
-    @Setter
+
     @Column(name = "title")
     private String title;
-    @Getter
-    @Setter
     @Column(name = "start_date")
     private String start_date;
-    @Getter
-    @Setter
+    @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(name = "end_date")
     private String end_date;
-    @Getter
-    @Setter
+    @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(name = "description")
     private String description;
-
+/*
     @JoinColumn(name = "USER_ID", referencedColumnName = "id")
     @ManyToOne
     private  Users USER_ID;
@@ -44,7 +42,7 @@ public class Workexperience {
     public void setUSER_ID(Users USER_ID) {
         this.USER_ID = USER_ID;
     }
-
+*/
     public Integer getId() {
         return id;
     }
@@ -52,6 +50,8 @@ public class Workexperience {
     public void setId(Integer id) {
         this.id = id;
     }
+
+
 
     public String getTitle() {
         return title;
@@ -83,5 +83,14 @@ public class Workexperience {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    public Integer getId_workExperience() {
+        return id_workExperience;
+    }
+
+    public void setId_workExperience(Integer id_workExperience) {
+        this.id_workExperience = id_workExperience;
     }
 }

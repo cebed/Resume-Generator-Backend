@@ -29,9 +29,7 @@ public class Education {
     private Date end_date;
 
 
-    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
-    @ManyToOne
-    private  Users USER_ID;
+
 
 
     //constructor
@@ -39,13 +37,7 @@ public class Education {
 
     }
 
-    public Users getUSER_ID() {
-        return USER_ID;
-    }
 
-    public void setUSER_ID(Users USER_ID) {
-        this.USER_ID = USER_ID;
-    }
 
 
     public Long getId() {

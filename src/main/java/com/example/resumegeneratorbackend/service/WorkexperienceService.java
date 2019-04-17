@@ -40,7 +40,7 @@ public class WorkexperienceService {
     public List<Workexperience> getbyid(int id) {
         List<Workexperience> byId = new LinkedList<>();
         for(Workexperience u : getAll()){
-            if(id==u.getUSER_ID().getId()) {
+            if(id==u.getId_workExperience()) {
 
                 byId.add(u);
             }
@@ -75,11 +75,11 @@ public class WorkexperienceService {
     public Workexperience WorkExperienceById(int id){
         Workexperience workexperiences = new Workexperience();
        for(Workexperience workexperience : getAll()){
-            if(workexperience.getId()==id){
+            if(workexperience.getId_workExperience()==id){
                 workexperiences = workexperience;
             }
        }
-       if(!workexperiences.getId().equals(null)){
+       if(!workexperiences.getId_workExperience().equals(null)){
 
            return workexperiences;
 

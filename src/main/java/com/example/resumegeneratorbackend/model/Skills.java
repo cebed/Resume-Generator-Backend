@@ -25,7 +25,5 @@ public class Skills {
     @Column(name = "level")
     private String level;
 
-    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
-    @ManyToOne
-    private  Users USER_ID;
+
 }

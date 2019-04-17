@@ -11,11 +11,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 
 public class Users implements UserDetails {
-
+// kan vi ändra detta col till users_id istället// missförstånd på andra klasser
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -54,7 +55,17 @@ public class Users implements UserDetails {
     @Column(name = "Image")
     private int Image;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Workexperience> workExperience;
 
+    public List<Workexperience> getWorkExperience() {
+        return workExperience;
+    }
+
+    public void setWorkExperience(List<Workexperience> workExperience) {
+        this.workExperience = workExperience;
+    }
 
     //Constructor
     public Users(){

@@ -39,13 +39,6 @@ public class WorkExController {
         return  workexperienceService.Register(workexperience);
 
     }
-// detta ska vara byusers ändra det
-    @GetMapping("/workid/{id}")
-    public List<Workexperience> byId(@Valid @PathVariable int id){
-
-        return  workexperienceService.getbyid(id);
-
-    }
 
 
     @GetMapping("/WorkExperienceById/{id}")
