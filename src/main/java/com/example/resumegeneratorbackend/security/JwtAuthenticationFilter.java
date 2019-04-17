@@ -21,6 +21,8 @@ import static com.example.resumegeneratorbackend.security.SecurityCockpit.TOKEN_
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+
+    //we need this to validate the token and extract user id from the token
     @Autowired
     private JwtTokenProvider tokenProvider;
 
@@ -33,14 +35,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         try {
 
+            //grab the jason web token from our request
             String jwt = getJWTFromRequest(request);
 
+            //make sure that the grabbed token has text and is valid, other words look if its not null
+            // and call method from tokenprovider to check if there is exceptions
             if(StringUtils.hasText(jwt)&& tokenProvider.validateToken(jwt)){
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
-                Users userDetails = userDetailServices.loadUserById(userId);
+                Users u = userDetailServices.loadUserById(userId);
 
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, Collections.emptyList());
+                        u, null, Collections.emptyList());
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
