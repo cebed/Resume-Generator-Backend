@@ -29,7 +29,7 @@ public class Users implements UserDetails {
 
     @Email(message = "Username needs to be an email")
     @NotBlank(message = "Email is required")
-    @Column(unique = true)
+    @Column(unique = true, length = 250)
     private String username;//this instance represents the email of the user
 
 
