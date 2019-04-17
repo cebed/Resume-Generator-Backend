@@ -24,11 +24,14 @@ public class JwtTokenProvider {
     //Generate token
     //This method generate a token when we have a valid username and password
     public String generateToken(Authentication authentication){
+        //extract the user that is authenticated
         Users users = (Users)authentication.getPrincipal();
         Date rightNow = new Date(System.currentTimeMillis());
 
         Date expire = new Date(rightNow.getTime()+EXPIRATION_TIME);
 
+       //we need to cast our user id to string because the token is a string.
+        //So the user id is one of the things we pass with the token
         String userId = Long.toString(users.getId());
 
         Map<String, Object> claims = new HashMap<>();
@@ -37,10 +40,11 @@ public class JwtTokenProvider {
         claims.put("fullName", users.getFullName());
         claims.put("address", users.getAddress());
         claims.put("phone", users.getPhone());
+        //throw roles here in future
 
         return Jwts.builder()
                 .setSubject(userId)
-                //information about the user
+                // claims is information about the user
                 .setClaims(claims)
                 .setIssuedAt(rightNow)
                 .setExpiration(expire)
@@ -75,6 +79,7 @@ public class JwtTokenProvider {
     //Get user id from token
 
     public Long getUserIdFromJWT(String token){
+        //decoding token
         Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
         String id = (String)claims.get("id");
 

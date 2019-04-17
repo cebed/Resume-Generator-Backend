@@ -1,5 +1,11 @@
 package com.example.resumegeneratorbackend.ExceptionHandler;
 
+
+/*
+ * This class is a replace of jason object that we want to return when the response is invalid
+ * This because we want to have a clearer message of what went wrong
+ * This helps in frontend to response the frontend with relevant error instead of 401 unauthorized bad message
+ */
 public class LoginInvalidResponse {
 
     private String username;
