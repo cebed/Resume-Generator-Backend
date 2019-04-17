@@ -59,6 +59,21 @@ public class Users implements UserDetails {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Workexperience> workExperience;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Courses> courses;
+
+
+
+
+    public List<Courses> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(List<Courses> courses) {
+        this.courses = courses;
+    }
+
     public List<Workexperience> getWorkExperience() {
         return workExperience;
     }
