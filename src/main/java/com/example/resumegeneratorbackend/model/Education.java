@@ -12,12 +12,15 @@ public class Education {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @GeneratedValue
+    @Column(name = "education_id")
+    private int education_id;
+
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "description")
-    @NotBlank(message = "Description is required")
+
     private String description;
 
     @Column(name = "startDate")
@@ -28,24 +31,38 @@ public class Education {
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
 
+    // observera att detta fält referar till user objectet
+    @Column(name = "id")
+    private Integer id;
 
 
+    public int getEducation_id() {
+        return education_id;
+    }
 
+    public void setEducation_id(int education_id) {
+        this.education_id = education_id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     //constructor
     public Education(){
 
     }
 
-
-
-
-    public Long getId() {
-        return id;
+    public String getTitle() {
+        return title;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

@@ -13,19 +13,69 @@ public class EducationService {
     @Autowired
     private EduRepository educationRepository;
 
-
-
-
-    public Iterable<Education> getAll() {
+    public List<Education> getAll() {
 
         return educationRepository.findAll();
     }
 
 
-    public Education registerEdu(Education education) {
+    public Education Register(Education Education) {
 
-        return  educationRepository.save(education);
+        return  educationRepository.save(Education);
     }
+
+
+
+
+    public Education updateCourse( Education u, int id) {
+        return educationRepository.findById(id)
+                .map(Education -> {
+                    Education.setTitle(u.getTitle());
+                    //  Education.setDescription(u.getDescription());
+                    // Education.getStart_date(u.getEnd_date());
+                    Education.setStart_date(u.getStart_date());
+                    return educationRepository.save(u);
+                })
+                .orElseGet(() -> {
+                    u.setEducation_id(id);
+                    return educationRepository.save(u);
+                });
+
+    }
+
+
+/*
+    public Education EducationById(int id){
+        Education education = new Education();
+        for(Education course : getAll()){
+            if(course.getEducation_id()==id){
+                education = course;
+            }
+        }
+        if(!education.getEducation_id().equals(null)){
+
+            return education;
+
+        }
+        else return null;
+    }
+*/
+
+    public String deleteWorExpeience(Integer id) {
+
+
+        educationRepository.deleteById(id);
+        return "kaos";
+
+    }
+
+
+
+
+
+
+
+
 
 
 }

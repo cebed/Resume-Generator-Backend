@@ -1,12 +1,12 @@
 package com.example.resumegeneratorbackend.repository;
 
 import com.example.resumegeneratorbackend.model.Education;
-import org.springframework.data.repository.CrudRepository;
-
-public interface EduRepository extends CrudRepository<Education, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-    @Override
-    Iterable<Education> findAll();
+public interface EduRepository extends JpaRepository<Education, Integer> {
+
+    Education getById(int id);
+
 
 }

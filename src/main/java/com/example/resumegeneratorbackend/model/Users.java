@@ -63,8 +63,18 @@ public class Users implements UserDetails {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Courses> courses;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Education> educations;
 
 
+    public List<Education> getEducations() {
+        return educations;
+    }
+
+    public void setEducations(List<Education> educations) {
+        this.educations = educations;
+    }
 
     public List<Courses> getCourses() {
         return courses;
