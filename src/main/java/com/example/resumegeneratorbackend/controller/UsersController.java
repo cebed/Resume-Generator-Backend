@@ -82,10 +82,12 @@ public class UsersController {
 
         return usersRepository.findById(id)
                 .map(users -> {
+                    users.setCurrentTitle(u.getCurrentTitle());
                     users.setFullName(u.getFullName());
                     users.setUsername(u.getUsername());
                     users.setAddress(u.getAddress());
                     users.setPhone(u.getPhone());
+                    users.setUserProfile(u.getUserProfile());
                     return usersRepository.save(users);
                 })
                 .orElseGet(() -> {

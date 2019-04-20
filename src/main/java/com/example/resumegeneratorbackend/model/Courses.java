@@ -33,9 +33,7 @@ public class Courses {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public void setId(Integer id) { this.id = id; }
 
     public Integer getCoursesId() {
         return coursesId;

@@ -22,6 +22,11 @@ public class Users implements UserDetails {
     @Column(name = "id")
     private Long id;
 
+    @Column
+    private String currentTitle;
+
+
+
     @NotBlank(message = "Please enter full name")
     @Column(name = "fullName")
     private String fullName;
@@ -49,8 +54,8 @@ public class Users implements UserDetails {
     @Column(name = "ADMINORUSER")
     private boolean adminOrUser;
 
-    @Column(name = "Description")
-    private String Description;
+    @Column(name = "UserProfile")
+    private String userProfile;
 
     @Column(name = "Image")
     private int Image;
@@ -66,6 +71,14 @@ public class Users implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Education> educations;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Others> others;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Skills> skills;
 
 
     public List<Education> getEducations() {
@@ -90,6 +103,24 @@ public class Users implements UserDetails {
 
     public void setWorkExperience(List<Workexperience> workExperience) {
         this.workExperience = workExperience;
+    }
+
+
+    public List<Others> getOthers() {
+        return others;
+    }
+
+    public void setOthers(List<Others> others) {
+        this.others = others;
+    }
+
+
+    public List<Skills> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skills> skills) {
+        this.skills = skills;
     }
 
     //Constructor
@@ -148,9 +179,23 @@ public class Users implements UserDetails {
         this.phone = phone;
     }
 
+    public String getUserProfile() {
+        return userProfile;
+    }
 
+    public void setUserProfile(String userProfile) {
+        this.userProfile = userProfile;
+    }
 
-  /*
+    public String getCurrentTitle() {
+        return currentTitle;
+    }
+
+    public void setCurrentTitle(String currentTitle) {
+        this.currentTitle = currentTitle;
+    }
+
+    /*
     Userdetails interface methods
      */
 
