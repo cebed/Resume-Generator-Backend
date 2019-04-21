@@ -80,6 +80,15 @@ public class Users implements UserDetails {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Skills> skills;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Companies> companies;
+
+
+    //Constructor
+    public Users(){
+
+    }
 
     public List<Education> getEducations() {
         return educations;
@@ -123,12 +132,13 @@ public class Users implements UserDetails {
         this.skills = skills;
     }
 
-    //Constructor
-    public Users(){
-
+    public List<Companies> getCompanies() {
+        return companies;
     }
 
-
+    public void setCompanies(List<Companies> companies) {
+        this.companies = companies;
+    }
 
     public String getUsername() {
 

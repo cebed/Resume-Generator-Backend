@@ -18,12 +18,38 @@ public class Companies {
     @Getter
     @Setter
     @GeneratedValue
+    @Column(name = "companies_Id")
+    private Integer companies_Id;
+
+
     @Column(name = "id")
     private Integer id;
-    @Getter
-    @Setter
+
     @Column(name = "name")
     private String name;
 
 
+    public Integer getCompanies_Id() {
+        return companies_Id;
+    }
+
+    public void setCompanies_Id(Integer companies_Id) {
+        this.companies_Id = companies_Id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
