@@ -84,6 +84,11 @@ public class Users implements UserDetails {
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Companies> companies;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Languages> languages;
+
+
 
     //Constructor
     public Users(){
@@ -143,6 +148,14 @@ public class Users implements UserDetails {
     public String getUsername() {
 
         return username;
+    }
+
+    public List<Languages> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Languages> languages) {
+        this.languages = languages;
     }
 
     public void setUsername(String username) {
