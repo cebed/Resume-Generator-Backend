@@ -115,12 +115,12 @@ public class UsersController {
 
 
 
-    @RequestMapping(value = "/pdf", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> citiesReport() throws IOException {
+    @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> pdfGeneration(@PathVariable Long id) throws IOException {
 
+        Users users = userServices.findById(id);
 
-
-        ByteArrayInputStream bis = GeneratePdf.usersInfoPdf();
+        ByteArrayInputStream bis = GeneratePdf.usersInfoPdf(users);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");

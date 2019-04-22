@@ -1,13 +1,10 @@
 package com.example.resumegeneratorbackend.utility;
 
 
+
+import com.example.resumegeneratorbackend.model.Education;
 import com.example.resumegeneratorbackend.model.Users;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Phrase;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -19,35 +16,32 @@ import java.util.logging.Logger;
 
 public class GeneratePdf {
 
-    public static ByteArrayInputStream usersInfoPdf() {
+
+    public static ByteArrayInputStream usersInfoPdf(Users users) {
+
+
 
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try {
 
-            PdfPTable table = new PdfPTable(3);
-            table.setWidthPercentage(60);
-            table.setWidths(new int[] { 1, 3, 3 });
-
-            Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
-
-            PdfPCell hcell;
-            hcell = new PdfPCell(new Phrase("Id", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-            hcell = new PdfPCell(new Phrase("Name", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
-
-            hcell = new PdfPCell(new Phrase("FrontEdge", headFont));
-            hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.addCell(hcell);
 
             PdfWriter.getInstance(document, out);
             document.open();
-            document.add(table);
+            document.add(new Paragraph("Front edge It:\t\t\t\t\t\t"));
+            document.add(new Paragraph("Name:\t\t\t\t\t\t\t\t" + users.getFullName() ));
+            document.add(new Paragraph("Address:\t\t\t\t\t\t\t\t" + users.getAddress() ));
+         // document.add(new Paragraph("Name" + users.getEducations().toString() ));
+            for (Education education : users.getEducations()){
+              //  document.add(new Paragraph("Name" + users.getEducations().toString() ));
+                document.add(new Paragraph("education title: \t\t\t\t\t\t" + education.getTitle() ));
+                document.add(new Paragraph("education start date: \t\t \t\t\t\t" + education.getStart_date()));
+                document.add(new Paragraph("education end date: \t\t \t\t\t\t" + education.getEnd_date()));
+                document.add(new Paragraph("education Description: \t\t\t\t\t\t " + education.getDescription()));
+            }
+
+
 
             document.close();
 
