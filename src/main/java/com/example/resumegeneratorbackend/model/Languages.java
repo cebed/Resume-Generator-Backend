@@ -25,6 +25,9 @@ public class Languages {
     @Column(name = "title")
     private String title;
 
+    @Column(name="level")
+    private String level;
+
 
     public Integer getId_language() {
         return id_language;
@@ -48,5 +51,13 @@ public class Languages {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }
