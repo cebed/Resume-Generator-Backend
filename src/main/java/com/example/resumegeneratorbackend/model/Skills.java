@@ -21,8 +21,8 @@ public class Skills {
 
 
 
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "users_id")
+    private Integer users_id;
 
     @Column(name = "title")
     private String title;
@@ -39,12 +39,12 @@ public class Skills {
         this.skills_Id = skills_Id;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUsers_id() {
+        return users_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUsers_id(Integer users_id) {
+        this.users_id = users_id;
     }
 
     public String getTitle() {

@@ -18,15 +18,12 @@ public class Languages {
     @Column(name = "id_language")
     private Integer id_language;
 
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "users_id")
+    private Integer users_id;
     @Getter
     @Setter
     @Column(name = "title")
     private String title;
-
-    @Column(name="level")
-    private String level;
 
 
     public Integer getId_language() {
@@ -37,12 +34,12 @@ public class Languages {
         this.id_language = id_language;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUsers_id() {
+        return users_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUsers_id(Integer users_id) {
+        this.users_id = users_id;
     }
 
     public String getTitle() {
@@ -51,13 +48,5 @@ public class Languages {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
     }
 }

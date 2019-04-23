@@ -1,9 +1,7 @@
 package com.example.resumegeneratorbackend.controller;
 
-import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.model.Workexperience;
 
-import com.example.resumegeneratorbackend.repository.WorkRepository;
 import com.example.resumegeneratorbackend.service.WorkexperienceService;
 import org.springframework.beans.factory.annotation.Autowired;
 

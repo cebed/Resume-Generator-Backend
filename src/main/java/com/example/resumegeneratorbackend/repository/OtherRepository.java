@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OtherRepository extends JpaRepository<Others, Integer> {
 
-    Others getById(int id);
+   // Others getById(int id);
 
 
 }

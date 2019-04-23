@@ -1,17 +1,9 @@
 package com.example.resumegeneratorbackend.service;
 
-import com.example.resumegeneratorbackend.ExceptionHandler.UsernameOrEmailExistException;
-import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.model.Workexperience;
-import com.example.resumegeneratorbackend.repository.UsersRepository;
 import com.example.resumegeneratorbackend.repository.WorkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
 import java.util.*;
 
@@ -49,7 +41,7 @@ public class WorkexperienceService {
                     return workRepository.save(Workexperience);
                 })
                 .orElseGet(() -> {
-                    u.setId(id);
+                    u.setId_workExperience(id);
                     return workRepository.save(u);
                 });
 

@@ -17,8 +17,8 @@ public class Workexperience {
     private Integer id_workExperience;
 
 // observera att detta fält referar till user objectet
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "usersid")
+    private Integer usersid;
 
     @Column(name = "title")
     private String title;
@@ -30,28 +30,14 @@ public class Workexperience {
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(name = "description")
     private String description;
-/*
-    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
-    @ManyToOne
-    private  Users USER_ID;
 
-    public Users getUSER_ID() {
-        return USER_ID;
+    public Integer getUsersid() {
+        return usersid;
     }
 
-    public void setUSER_ID(Users USER_ID) {
-        this.USER_ID = USER_ID;
+    public void setUsersid(Integer usersid) {
+        this.usersid = usersid;
     }
-*/
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-
 
     public String getTitle() {
         return title;
