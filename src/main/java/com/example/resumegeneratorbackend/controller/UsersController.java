@@ -55,7 +55,7 @@ public class UsersController {
         return userServices.getAllUsers();
     }
 
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequests loginRequest, BindingResult result){
         ResponseEntity<?> errorMap = userServices.StoreValidationErrorService(result);
         if(errorMap != null) return errorMap;
@@ -105,7 +105,7 @@ public class UsersController {
 
 
 
-    @PostMapping("/register")
+    @PostMapping("/auth/register")
     public Users registerUser(@Valid @RequestBody Users user){
 
         return  userServices.saveUser(user);
