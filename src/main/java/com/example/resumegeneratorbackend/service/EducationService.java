@@ -31,8 +31,8 @@ public class EducationService {
         return educationRepository.findById(id)
                 .map(Education -> {
                     Education.setTitle(u.getTitle());
-                    //  Education.setDescription(u.getDescription());
-                    // Education.getStart_date(u.getEnd_date());
+                     Education.setDescription(u.getDescription());
+                    Education.setEnd_date(u.getEnd_date());
                     Education.setStart_date(u.getStart_date());
                     return educationRepository.save(u);
                 })
