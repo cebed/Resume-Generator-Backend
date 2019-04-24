@@ -21,8 +21,8 @@ public class Others {
     @Column(name = "others_Id")
     private Integer others_Id;
 
-    @Column(name = "users_id")
-    private Integer users_id;
+    @Column(name = "id")
+    private Integer id;
 
 
     @Column(name = "title")
@@ -57,12 +57,12 @@ public class Others {
         this.description = description;
     }
 
-    public Integer getUsers_id() {
-        return users_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUsers_id(Integer users_id) {
-        this.users_id = users_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
 

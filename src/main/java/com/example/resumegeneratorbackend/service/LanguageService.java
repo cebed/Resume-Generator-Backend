@@ -32,6 +32,7 @@ public class LanguageService {
         return languageRepository.findById(id)
                 .map(languages -> {
                     languages.setTitle(l.getTitle());
+                    languages.setLevel(l.getLevel());
                     return languageRepository.save(languages);
                 })
                 .orElseGet(() -> {

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EduRepository extends JpaRepository<Education, Integer> {
 
-   // Education getById(int id);
+    Education getById(int id);
 
 
 }

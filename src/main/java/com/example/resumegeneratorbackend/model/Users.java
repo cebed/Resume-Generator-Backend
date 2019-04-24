@@ -1,7 +1,5 @@
 package com.example.resumegeneratorbackend.model;
 
-
-
 //import lombok.Getter;
 //import lombok.Setter;
 
@@ -16,18 +14,34 @@ import java.util.Collection;
 import java.util.List;
 
 //needs to implement the UserDetails interface so that we can use it for some of the validation steps and the authorization steps
-
-
 @Entity
-public class Users  {
-    // kan vi ändra detta col till users_id istället// missförstånd på andra klasser
+public class Users implements UserDetails {
+// kan vi ändra detta col till users_id istället// missförstånd på andra klasser
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userid")
-    private Long userid;
+    @Column(name = "id")
+    private Long id;
 
     @Column
     private String currentTitle;
+
+
+
+    @NotBlank(message = "Please enter full name")
+    @Column(name = "fullName")
+    private String fullName;
+
+
+
+    @Email(message = "Username needs to be an email")
+    @NotBlank(message = "Email is required")
+    @Column(unique = true, length = 250)
+    private String username;//this instance represents the email of the user
+
+
+    @NotBlank(message = "Password is required")
+    @Column(name = "password")
+    private String password;
 
 
     @Column(name="Address")
@@ -46,58 +60,40 @@ public class Users  {
     @Column(name = "Image")
     private int Image;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private Security security;
-
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userid", referencedColumnName = "userid")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Workexperience> workExperience;
 
-    public Users(){
-
-    }
-
-    public Long getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Long userid) {
-        this.userid = userid;
-    }
-
-    public Security getSecurity() {
-        return security;
-    }
-
-    public void setSecurity(Security security) {
-        this.security = security;
-    }
-
-    /*
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Courses> courses;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Education> educations;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Others> others;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Skills> skills;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users_id", referencedColumnName = "users_id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Companies> companies;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private List<Languages> languages;
+
 
 
     //Constructor
+    public Users(){
 
+    }
 
     public List<Education> getEducations() {
         return educations;
@@ -114,8 +110,6 @@ public class Users  {
     public void setCourses(List<Courses> courses) {
         this.courses = courses;
     }
-    */
-
 
     public List<Workexperience> getWorkExperience() {
         return workExperience;
@@ -125,7 +119,7 @@ public class Users  {
         this.workExperience = workExperience;
     }
 
-/*
+
     public List<Others> getOthers() {
         return others;
     }
@@ -150,19 +144,47 @@ public class Users  {
     public void setCompanies(List<Companies> companies) {
         this.companies = companies;
     }
-*/
 
+    public String getUsername() {
 
-
-    public boolean isAdminOrUser() {
-        return adminOrUser;
+        return username;
     }
 
-    public void setAdminOrUser(boolean adminOrUser) {
-        this.adminOrUser = adminOrUser;
+    public List<Languages> getLanguages() {
+        return languages;
     }
 
+    public void setLanguages(List<Languages> languages) {
+        this.languages = languages;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getAddress() {
         return address;
@@ -201,5 +223,36 @@ public class Users  {
      */
 
 
+    //denna används när man har flera roller exvis admin o user
+    @Override
+    @JsonIgnore //ignorerar dessa fält i postman när vi exvis får tillbaka objektet av en skapad user
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
+
+    //this is set to true because if it false then it is used to handle accounts that expires becasue of payment
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    @JsonIgnore
+    public boolean isEnabled() {
+        return true;
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.resumegeneratorbackend.security;
 
-import com.example.resumegeneratorbackend.model.Security;
+import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.service.UserDetailServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             // and call method from tokenprovider to check if there is exceptions
             if(StringUtils.hasText(jwt)&& tokenProvider.validateToken(jwt)){
                 Long userId = tokenProvider.getUserIdFromJWT(jwt);
-                Security u = userDetailServices.loadUserById(userId);
+                Users u = userDetailServices.loadUserById(userId);
 
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         u, null, Collections.emptyList());

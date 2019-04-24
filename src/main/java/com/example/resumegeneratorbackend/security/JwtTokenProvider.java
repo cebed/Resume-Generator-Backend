@@ -1,6 +1,6 @@
 package com.example.resumegeneratorbackend.security;
 
-import com.example.resumegeneratorbackend.model.Security;
+import com.example.resumegeneratorbackend.model.Users;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -25,7 +25,7 @@ public class JwtTokenProvider {
     //This method generate a token when we have a valid username and password
     public String generateToken(Authentication authentication){
         //extract the user that is authenticated
-        Security users = (Security)authentication.getPrincipal();
+        Users users = (Users)authentication.getPrincipal();
         Date rightNow = new Date(System.currentTimeMillis());
 
         Date expire = new Date(rightNow.getTime()+EXPIRATION_TIME);
@@ -38,7 +38,8 @@ public class JwtTokenProvider {
         claims.put("id", (Long.toString(users.getId())));
         claims.put("username", users.getUsername());
         claims.put("fullName", users.getFullName());
-
+        claims.put("address", users.getAddress());
+        claims.put("phone", users.getPhone());
         //throw roles here in future
 
         return Jwts.builder()
