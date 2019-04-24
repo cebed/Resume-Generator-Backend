@@ -66,7 +66,6 @@ public class GeneratePdf {
 
 
 
-
             Paragraph entityName = new Paragraph("ERFARENHETER", entityFont);
             entityName.setSpacingBefore(25);
             entityName.setSpacingAfter(15);
@@ -79,10 +78,9 @@ public class GeneratePdf {
                     table.setSpacingAfter(20);
                     PdfPCell cellOne = new PdfPCell(new Phrase(workexperience.getStart_date(), normalfont));
                     PdfPCell cellTwo = new PdfPCell(new Phrase("Företag1"+", "+workexperience.getTitle(), normalfont));
-                    PdfPCell cellThree =new PdfPCell(new Phrase("-",  normalfont));
-                    PdfPCell cellFour =new PdfPCell(new Phrase(workexperience.getDescription(),  normalfont));
-                    PdfPCell cellFive = new PdfPCell(new Phrase(workexperience.getEnd_date(),  normalfont));
-                    PdfPCell cellSix = new PdfPCell(new Phrase("",  normalfont));
+                    PdfPCell cellThree =new PdfPCell(new Phrase("-"+"\n"+ workexperience.getEnd_date(),  normalfont));
+                    PdfPCell cellFour =new PdfPCell(new Phrase(workexperience.getDescription(), normalfont));
+
 
                     cellOne.setBorder(Rectangle.NO_BORDER);
                     //cellOne.setBackgroundColor(new Color(255,255,45));
@@ -90,40 +88,17 @@ public class GeneratePdf {
                     cellTwo.setBorder(Rectangle.NO_BORDER);
                     cellThree.setBorder(Rectangle.NO_BORDER);
                     cellFour.setBorder(Rectangle.NO_BORDER);
-                    cellFive.setBorder(Rectangle.NO_BORDER);
-                    cellSix.setBorder(Rectangle.NO_BORDER);
+
 
                     table.setWidthPercentage(100);
                     table.addCell(cellOne);
                     table.addCell(cellTwo);
                     table.addCell(cellThree);
                     table.addCell(cellFour);
-                    table.addCell(cellFive);
-                    table.addCell(cellSix);
 
                     document.add(table);
 
 
-
-
-
-
-
-/*
-                    Chunk c = new Chunk(workexperience.getStart_date()+"\t\t"+"Företag 1, ", normalfont);
-                    Chunk c1 = new Chunk(workexperience.getTitle()+"\n", normalfont);
-
-                    Paragraph p1 = new Paragraph();
-                    p1.add(new Chunk(c));
-                    p1.add(new Chunk(c1));
-
-                    document.add(p1);
-
-                    Paragraph desc = new Paragraph("-"+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+workexperience.getDescription(), normalfont);
-                    document.add(desc);
-                    Paragraph enddate = new Paragraph(workexperience.getEnd_date(), normalfont);
-                    document.add(enddate);
-*/
                 }
 
             Paragraph entityName2 = new Paragraph("KOMPETENSER", entityFont);
