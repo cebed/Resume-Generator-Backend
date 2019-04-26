@@ -41,6 +41,7 @@ public class GeneratePdf {
             Font boldFont = new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD);
             Font entityFont = new Font(Font.FontFamily.TIMES_ROMAN, 16, Font.BOLD);
             Font normalfont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+            Font userprofilefont= new Font(Font.FontFamily.TIMES_ROMAN,14);
 
 
             String imageUrl = "https://frontedgeit.se/wp-content/uploads/2018/04/primar-vit-u-tagline.png";
@@ -51,7 +52,7 @@ public class GeneratePdf {
             document.add(image2);
             document.add(new Paragraph(users.getFullName(), boldFont ));
 
-            document.add(new Paragraph("Title:\t" + users.getCurrentTitle() ));
+            document.add(new Paragraph("Title:\t" + users.getCurrentTitle(), userprofilefont ));
 
 
             // Setting paragraph line spacing to 32
