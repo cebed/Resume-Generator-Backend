@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -21,18 +22,18 @@ public class LanguageController {
 
 
     @GetMapping(value = "/all")
-    public List<Languages> getAll() {
+    public Iterable<Languages> getAll(Principal principal) {
 
-        return languageService.getAll();
+        return languageService.getAll(principal.getName());
     }
 
 
 
     @PostMapping("/reg")
-    public Languages register(@Valid @RequestBody Languages languages){
+    public Languages register(@Valid @RequestBody Languages languages, Principal principal){
 
 
-        return  languageService.Register(languages);
+        return  languageService.Register(languages, principal.getName());
 
     }
 

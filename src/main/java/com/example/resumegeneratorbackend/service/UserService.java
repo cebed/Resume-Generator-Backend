@@ -35,8 +35,13 @@ public class UserService {
         return usersRepository.save((users));
     }
 
-    public Users findById(Long id){
-        return usersRepository.getById(id);
+    public Users findById(Long id, String username) {
+        Users users = usersRepository.getById(id);
+        if (!users.getTheOwner().equals(username)) {
+            System.out.println("You are not allowed to get this user");
+            return null;
+        }
+        return users;
     }
 
 
@@ -51,6 +56,8 @@ public class UserService {
 
 
         try{
+
+            newuser.setTheOwner(newuser.getUsername());
             //this encryptes the password
             newuser.setPassword(bCryptPasswordEncoder.encode(newuser.getPassword()));
 
@@ -66,7 +73,14 @@ public class UserService {
 
     }
 
-    public List<Users> getAllUsers() {
+    public Iterable<Users> getAllUsers() {
+        Users users = new Users();
+        if (!users.getTheOwner().equals(users.getUsername())) {
+            System.out.println("You are not allowed to get all users");
+            return null;
+
+        }
+
         return usersRepository.findAll();
     }
 

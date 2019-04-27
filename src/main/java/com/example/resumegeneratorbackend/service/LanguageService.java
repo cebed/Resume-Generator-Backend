@@ -1,7 +1,9 @@
 package com.example.resumegeneratorbackend.service;
 
 import com.example.resumegeneratorbackend.model.Languages;
+import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.repository.LanguageRepository;
+import com.example.resumegeneratorbackend.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +16,22 @@ public class LanguageService {
     @Autowired
     private LanguageRepository languageRepository;
 
-    public List<Languages> getAll() {
+    @Autowired
+    private UsersRepository usersRepository;
 
-        return languageRepository.findAll();
+
+    public Iterable<Languages> getAll(String username) {
+
+        return languageRepository.findAllByOwner(username);
     }
 
 
-    public Languages Register(Languages lang) {
 
+
+    public Languages Register(Languages lang, String username) {
+            Users users = usersRepository.findByUsername(username);
+            lang.setUsers(users);
+            lang.setOwner(users.getUsername());
         return  languageRepository.save(lang);
     }
 

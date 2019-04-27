@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import static com.example.resumegeneratorbackend.security.SecurityCockpit.TOKEN_PREFIX;
@@ -50,7 +51,7 @@ public class UsersController {
 
 
     @GetMapping(value = "/all")
-    public List<Users> getAll() {
+    public Iterable<Users> getAll() {
 
         return userServices.getAllUsers();
     }
@@ -75,9 +76,9 @@ public class UsersController {
     }
 
     @GetMapping("{us_id}")
-    public ResponseEntity<?> getUsByID(@PathVariable Long us_id){
+    public ResponseEntity<?> getUsByID(@PathVariable Long us_id, Principal principal){
 
-        Users users = userServices.findById(us_id);
+        Users users = userServices.findById(us_id, principal.getName());
         return new ResponseEntity<Users>(users, HttpStatus.OK);
     }
 
@@ -107,8 +108,8 @@ public class UsersController {
 
     @PostMapping("/auth/register")
     public Users registerUser(@Valid @RequestBody Users user){
-
-        return  userServices.saveUser(user);
+        Users u1 = userServices.saveUser(user);
+        return  u1;
 
     }
 
@@ -116,9 +117,9 @@ public class UsersController {
 
 
     @RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> pdfGeneration(@PathVariable Long id) throws IOException {
+    public ResponseEntity<InputStreamResource> pdfGeneration(@PathVariable Long id, Principal principal) throws IOException {
 
-        Users users = userServices.findById(id);
+        Users users = userServices.findById(id, principal.getName());
 
         ByteArrayInputStream bis = GeneratePdf.usersInfoPdf(users);
 

@@ -60,6 +60,8 @@ public class Users implements UserDetails {
     @Column(name = "Image")
     private int Image;
 
+    private String theOwner;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Workexperience> workExperience;
@@ -93,6 +95,14 @@ public class Users implements UserDetails {
     //Constructor
     public Users(){
 
+    }
+
+    public String getTheOwner() {
+        return theOwner;
+    }
+
+    public void setTheOwner(String theOwner) {
+        this.theOwner = theOwner;
     }
 
     public List<Education> getEducations() {
