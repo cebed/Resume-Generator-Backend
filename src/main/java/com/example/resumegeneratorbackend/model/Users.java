@@ -54,11 +54,27 @@ public class Users implements UserDetails {
     @Column(name = "ADMINORUSER")
     private boolean adminOrUser;
 
+    public boolean isAdminOrUser() {
+        return adminOrUser;
+    }
+
+    public void setAdminOrUser(boolean adminOrUser) {
+        this.adminOrUser = adminOrUser;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
     @Column(name = "UserProfile")
     private String userProfile;
 
     @Column(name = "Image")
-    private int Image;
+    private String Image;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")

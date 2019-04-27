@@ -49,7 +49,14 @@ public class GeneratePdf {
             image2.scalePercent(20,20);
 
             document.add(image2);
+
+
             document.add(new Paragraph(users.getFullName(), boldFont ));
+
+            Image prophileImage = Image.getInstance(new URL(users.getImage()));
+            prophileImage.scalePercent(15,15);
+
+            document.add(prophileImage);
 
             document.add(new Paragraph("Title:\t" + users.getCurrentTitle() ));
 
