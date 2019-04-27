@@ -37,7 +37,7 @@ public class UserService {
 
     public Users findById(Long id, String username) {
         Users users = usersRepository.getById(id);
-        if (!users.getTheOwner().equals(username)) {
+        if (!users.getTheOwner().equals(username)&& users.isAdminOrUser()==true) {
             System.out.println("You are not allowed to get this user");
             return null;
         }
@@ -73,9 +73,11 @@ public class UserService {
 
     }
 
-    public Iterable<Users> getAllUsers() {
-        Users users = new Users();
-        if (!users.getTheOwner().equals(users.getUsername())) {
+    public Iterable<Users> getAllUsers(String username) {
+        Users users = usersRepository.findByUsername(username);
+        boolean up = users.isAdminOrUser();
+        if (users.getTheOwner().equals(username) && up==false)
+        {
             System.out.println("You are not allowed to get all users");
             return null;
 

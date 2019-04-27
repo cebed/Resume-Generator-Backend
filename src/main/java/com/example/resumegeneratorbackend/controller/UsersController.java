@@ -51,9 +51,9 @@ public class UsersController {
 
 
     @GetMapping(value = "/all")
-    public Iterable<Users> getAll() {
+    public Iterable<Users> getAll(Principal principal) {
 
-        return userServices.getAllUsers();
+        return userServices.getAllUsers(principal.getName());
     }
 
     @PostMapping("/auth/login")
