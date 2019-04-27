@@ -63,7 +63,7 @@ public class WorkexperienceService {
             }
        }
        if(!workexperiences.getId_workExperience().equals(null)){
-
+            System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj" +workexperiences.getId_workExperience() );
            return workexperiences;
 
        }

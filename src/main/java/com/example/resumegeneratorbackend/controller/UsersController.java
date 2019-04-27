@@ -95,6 +95,7 @@ public class UsersController {
                     users.setAddress(u.getAddress());
                     users.setPhone(u.getPhone());
                     users.setUserProfile(u.getUserProfile());
+                    users.setImage(u.getImage());
                     return usersRepository.save(users);
                 })
                 .orElseGet(() -> {
