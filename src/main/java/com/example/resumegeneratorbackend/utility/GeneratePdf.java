@@ -60,38 +60,51 @@ public class GeneratePdf {
 
             document.add(new Paragraph("Title:\t" + users.getCurrentTitle() ));
 
-            String content = "My profile:";
 
             // Setting paragraph line spacing to 32
-            Paragraph para1 = new Paragraph(32);
+            Paragraph para1 = new Paragraph();
 
             // Setting the space before and after the paragraph
             para1.setSpacingBefore(30);
-            para1.add(new Chunk(content+"\n" + users.getUserProfile()));
+            para1.add(new Chunk(users.getUserProfile()));
             document.add(para1);
-            LineSeparator l = new LineSeparator(0.5f, 100, null, Element.ALIGN_CENTER, 16);
+            LineSeparator l = new LineSeparator(0.5f, 100, null, Element.ALIGN_CENTER, 0.5f);
             document.add(new Chunk(l));
 
+
+
             Paragraph entityName = new Paragraph("ERFARENHETER", entityFont);
-            entityName.setSpacingAfter(5);
+            entityName.setSpacingBefore(25);
+            entityName.setSpacingAfter(15);
             document.add(entityName);
 
                 for(Workexperience workexperience : users.getWorkExperience()){
 
-                    Chunk c = new Chunk(workexperience.getStart_date()+"\t\t"+"Företag 1, ", normalfont);
-                    Chunk c1 = new Chunk(workexperience.getTitle()+"\n", normalfont);
+                    PdfPTable table = new PdfPTable(2);
+                    table.setWidths(new float[] { 1, 4 });
+                    table.setSpacingAfter(20);
+                    PdfPCell cellOne = new PdfPCell(new Phrase(workexperience.getStart_date(), normalfont));
+                    PdfPCell cellTwo = new PdfPCell(new Phrase("Företag1"+", "+workexperience.getTitle(), normalfont));
+                    PdfPCell cellThree =new PdfPCell(new Phrase("-"+"\n"+ workexperience.getEnd_date(),  normalfont));
+                    PdfPCell cellFour =new PdfPCell(new Phrase(workexperience.getDescription(), normalfont));
 
-                    Paragraph p1 = new Paragraph();
-                    p1.add(new Chunk(c));
-                    p1.add(new Chunk(c1));
 
-                    document.add(p1);
+                    cellOne.setBorder(Rectangle.NO_BORDER);
+                    //cellOne.setBackgroundColor(new Color(255,255,45));
 
-                    Paragraph desc = new Paragraph("-"+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+workexperience.getDescription(), normalfont);
-                    document.add(desc);
-                    Paragraph enddate = new Paragraph(workexperience.getEnd_date(), normalfont);
-                    enddate.setSpacingAfter(20);
-                    document.add(enddate);
+                    cellTwo.setBorder(Rectangle.NO_BORDER);
+                    cellThree.setBorder(Rectangle.NO_BORDER);
+                    cellFour.setBorder(Rectangle.NO_BORDER);
+
+
+                    table.setWidthPercentage(100);
+                    table.addCell(cellOne);
+                    table.addCell(cellTwo);
+                    table.addCell(cellThree);
+                    table.addCell(cellFour);
+
+                    document.add(table);
+
 
                 }
 
@@ -101,7 +114,7 @@ public class GeneratePdf {
 
             for(Skills skills : users.getSkills()){
                 PdfPTable table = new PdfPTable(2);
-                table.setWidths(new float[] { 1, 5 });
+                table.setWidths(new float[] { 1, 4 });
                 PdfPCell cellOne = new PdfPCell(new Phrase(skills.getTitle(), normalfont));
                 PdfPCell cellTwo = new PdfPCell(new Phrase(skills.getLevel(), normalfont));
                 cellOne.setBorder(Rectangle.NO_BORDER);
@@ -135,7 +148,7 @@ public class GeneratePdf {
 
             for(Courses courses : users.getCourses()){
                 PdfPTable table = new PdfPTable(2);
-                table.setWidths(new float[] { 1, 5 });
+                table.setWidths(new float[] { 1, 4 });
 
 
                 PdfPCell cellOne = new PdfPCell(new Phrase(courses.getStart_date(), normalfont));
@@ -162,7 +175,7 @@ public class GeneratePdf {
             for(Education education : users.getEducations()){
                 PdfPTable eduTable = new PdfPTable(2);
                 eduTable.setSpacingAfter(15);
-                eduTable.setWidths(new float[] { 1, 5 });
+                eduTable.setWidths(new float[] { 1, 4 });
 
 
                 PdfPCell cellone = new PdfPCell(new Phrase(education.getStart_date(), normalfont));
@@ -219,7 +232,7 @@ public class GeneratePdf {
             for(Others others : users.getOthers()){
                 PdfPTable otherTable = new PdfPTable(2);
                 otherTable.setSpacingAfter(15);
-                otherTable.setWidths(new float[] { 1, 5 });
+                otherTable.setWidths(new float[] { 1, 4 });
 
 
                 PdfPCell cellone = new PdfPCell(new Phrase(others.getTitle(), normalfont));
