@@ -54,13 +54,13 @@ public class GeneratePdf {
 
             document.add(new Paragraph(users.getFullName(), boldFont ));
 
-            Image prophileImage = Image.getInstance(new URL(users.getImage()));
-            prophileImage.scalePercent(15,15);
-
-            document.add(prophileImage);
-
             document.add(new Paragraph("Title:\t" + users.getCurrentTitle(), userprofilefont ));
 
+
+            Image prophileImage = Image.getInstance(new URL(users.getImage()));
+            prophileImage.scalePercent(20,20);
+            prophileImage.setIndentationLeft(350);
+            document.add(prophileImage);
 
             // Setting paragraph line spacing to 32
             Paragraph para1 = new Paragraph();
