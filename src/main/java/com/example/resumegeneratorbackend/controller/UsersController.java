@@ -141,6 +141,7 @@ public class UsersController {
     @PostMapping(path = "/login", produces = MediaType.APPLICATION_XML_VALUE)
     public String Login(@RequestBody String username) {
         return userServices.Login(username);
+<<<<<<< HEAD
     }
 <<<<<<< HEAD
 
@@ -178,6 +179,10 @@ public class UsersController {
 
 
 =======
+    */
+>>>>>>> parent of a474f3b... we are able to generate blank word-docs but the sol is very bad since we cant download it first to the browser
+=======
+    }
     */
 >>>>>>> parent of a474f3b... we are able to generate blank word-docs but the sol is very bad since we cant download it first to the browser
 }
