@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -25,7 +26,7 @@ public class SkillsController {
 
 
     @GetMapping(value = "/all")
-    public List<Skills> getAll() {
+    public Iterable<Skills> getAll() {
 
         return skillsService.getAll();
     }
@@ -46,6 +47,13 @@ public class SkillsController {
     public Skills updateOthers(@RequestBody Skills s, @PathVariable int id) {
 
         return skillsService.updateSkills(s , id);
+
+    }
+
+    @GetMapping("/getSkillsById/{id}")
+    public Optional<Skills> skillsById(@PathVariable int id){
+        System.out.println("------------------------------------------------------------------");
+        return  skillsService.skillsById(id);
 
     }
 

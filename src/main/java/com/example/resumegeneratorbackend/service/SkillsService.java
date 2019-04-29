@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkillsService {
@@ -14,7 +15,7 @@ public class SkillsService {
     @Autowired
     private SkillRepository skillRepository;
 
-    public List<Skills> getAll() {
+    public Iterable<Skills> getAll() {
 
         return skillRepository.findAll();
     }
@@ -25,6 +26,10 @@ public class SkillsService {
         return  skillRepository.save(skills);
     }
 
+
+    public Optional<Skills> skillsById(int id){
+        return skillRepository.findById(id);
+    }
 
 
 

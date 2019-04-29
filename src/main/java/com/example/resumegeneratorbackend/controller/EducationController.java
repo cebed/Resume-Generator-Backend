@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -25,7 +26,7 @@ public class EducationController {
 
 
     @GetMapping(value = "/all")
-    public List<Education> getAll() {
+    public Iterable<Education> getAll() {
 
         return educationService.getAll();
     }
@@ -40,14 +41,14 @@ public class EducationController {
 
     }
 
-/*
-    @GetMapping("/Coursesebyid/{id}")
-    public Courses CourseseById( @PathVariable int id){
 
-        return  educationService.coursesById(id);
+    @GetMapping("/EduById/{id}")
+    public Optional<Education> EducationById(@PathVariable int id){
+System.out.println("------------------------------------------------------------------");
+        return  educationService.EducationById(id);
 
     }
-*/
+
 
 
 

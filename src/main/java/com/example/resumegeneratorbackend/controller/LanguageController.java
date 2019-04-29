@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -43,6 +44,13 @@ public class LanguageController {
     public Languages updateLanguages(@RequestBody Languages l, @PathVariable int id) {
 
         return languageService.updateLanguages(l , id);
+
+    }
+
+    @GetMapping("/LanguageById/{id}")
+    public Optional<Languages> LanguageById(@PathVariable int id){
+        System.out.println("------------------------------------------------------------------");
+        return  languageService.LanguageById(id);
 
     }
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -21,9 +22,17 @@ public class OthersController {
 
 
     @GetMapping(value = "/all")
-    public List<Others> getAll() {
+    public Iterable<Others> getAll() {
 
         return otherService.getAll();
+    }
+
+
+    @GetMapping("/getOthersById/{id}")
+    public Optional<Others> otherCompetencesById(@PathVariable int id){
+        //System.out.println("------------------------------------------------------------------");
+        return otherService.otherCompetencesById(id);
+
     }
 
 

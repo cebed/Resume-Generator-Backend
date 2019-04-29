@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OtherService {
@@ -14,7 +15,7 @@ public class OtherService {
     @Autowired
     private OtherRepository otherRepository;
 
-    public List<Others> getAll() {
+    public Iterable<Others> getAll() {
 
         return otherRepository.findAll();
     }
@@ -26,7 +27,9 @@ public class OtherService {
     }
 
 
-
+    public Optional<Others> otherCompetencesById(int id){
+        return otherRepository.findById(id);
+    }
 
     public Others updateOthers( Others o, int id) {
         return otherRepository.findById(id)

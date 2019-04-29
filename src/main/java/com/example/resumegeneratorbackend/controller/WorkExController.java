@@ -1,5 +1,6 @@
 package com.example.resumegeneratorbackend.controller;
 
+import com.example.resumegeneratorbackend.model.Others;
 import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.model.Workexperience;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @RestController
@@ -47,7 +48,6 @@ public class WorkExController {
         return  workexperienceService.WorkExperienceById(id);
 
     }
-
 
 
 

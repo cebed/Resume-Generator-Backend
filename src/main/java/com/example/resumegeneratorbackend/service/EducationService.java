@@ -13,7 +13,7 @@ public class EducationService {
     @Autowired
     private EduRepository educationRepository;
 
-    public List<Education> getAll() {
+    public Iterable<Education> getAll() {
 
         return educationRepository.findAll();
     }
@@ -44,22 +44,11 @@ public class EducationService {
     }
 
 
-/*
-    public Education EducationById(int id){
-        Education education = new Education();
-        for(Education course : getAll()){
-            if(course.getEducation_id()==id){
-                education = course;
-            }
-        }
-        if(!education.getEducation_id().equals(null)){
 
-            return education;
-
-        }
-        else return null;
+    public Optional<Education> EducationById(int id){
+       return educationRepository.findById(id);
     }
-*/
+
 
     public String deleteWorExpeience(Integer id) {
 
