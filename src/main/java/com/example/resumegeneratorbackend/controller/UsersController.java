@@ -25,9 +25,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.resumegeneratorbackend.security.SecurityCockpit.TOKEN_PREFIX;
@@ -136,11 +136,5 @@ public class UsersController {
 
 
 
-    /*
-    // tillfällig login metod finns på services
-    @PostMapping(path = "/login", produces = MediaType.APPLICATION_XML_VALUE)
-    public String Login(@RequestBody String username) {
-        return userServices.Login(username);
-    }
-    */
+
 }
