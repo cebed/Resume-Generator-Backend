@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.resumegeneratorbackend.security.SecurityCockpit.TOKEN_PREFIX;
@@ -150,38 +150,4 @@ public class UsersController {
 
         return "";
     }
-
-
-    @RequestMapping(value="/download", method=RequestMethod.GET)
-    public ResponseEntity<Object> downloadFile() throws IOException  {
-        FileWriter filewriter =  null;
-        try {
-
-
-            String filename = "dat.txt";
-
-            filewriter = new FileWriter(filename);
-            filewriter.write("tjo");
-            filewriter.flush();
-
-            File file = new File(filename);
-
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getName()));
-            headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-            headers.add("Pragma", "no-cache");
-            headers.add("Expires", "0");
-
-            ResponseEntity<Object> responseEntity = ResponseEntity.ok().headers(headers).contentLength(file.length()).contentType(MediaType.parseMediaType("application/txt")).body(resource);
-            return responseEntity;
-        } catch (Exception e ) {
-            return new ResponseEntity<>("error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
-        } finally {
-            if(filewriter!=null)
-                filewriter.close();
-        }
-    }
-
-
 }
