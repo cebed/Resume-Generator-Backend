@@ -9,7 +9,6 @@ import com.example.resumegeneratorbackend.repository.UsersRepository;
 import com.example.resumegeneratorbackend.security.JwtTokenProvider;
 import com.example.resumegeneratorbackend.service.UserService;
 import com.example.resumegeneratorbackend.utility.GeneratePdf;
-import com.example.resumegeneratorbackend.utility.GenerateWord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -21,7 +20,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -138,18 +136,13 @@ public class UsersController {
 
 
 
-    @RequestMapping("/word")
-    @ResponseBody
-    @Transactional(readOnly = true)
-    public String writeHotelToWord() throws Exception {
-
-
-        GenerateWord word = new GenerateWord();
-
-        word.writeDoc();
-
-        return "";
+    /*
+    // tillfällig login metod finns på services
+    @PostMapping(path = "/login", produces = MediaType.APPLICATION_XML_VALUE)
+    public String Login(@RequestBody String username) {
+        return userServices.Login(username);
     }
+<<<<<<< HEAD
 
 
     @RequestMapping(value="/download", method=RequestMethod.GET)
@@ -184,4 +177,7 @@ public class UsersController {
     }
 
 
+=======
+    */
+>>>>>>> parent of a474f3b... we are able to generate blank word-docs but the sol is very bad since we cant download it first to the browser
 }
