@@ -136,53 +136,6 @@ public class UsersController {
 
 
 
-    /*
-    // tillfällig login metod finns på services
-    @PostMapping(path = "/login", produces = MediaType.APPLICATION_XML_VALUE)
-    public String Login(@RequestBody String username) {
-        return userServices.Login(username);
-<<<<<<< HEAD
-    }
-<<<<<<< HEAD
+    
 
-
-    @RequestMapping(value="/download", method=RequestMethod.GET)
-    public ResponseEntity<Object> downloadFile() throws IOException  {
-        FileWriter filewriter =  null;
-        try {
-
-
-            String filename = "dat.txt";
-
-            filewriter = new FileWriter(filename);
-            filewriter.write("tjo");
-            filewriter.flush();
-
-            File file = new File(filename);
-
-            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getName()));
-            headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
-            headers.add("Pragma", "no-cache");
-            headers.add("Expires", "0");
-
-            ResponseEntity<Object> responseEntity = ResponseEntity.ok().headers(headers).contentLength(file.length()).contentType(MediaType.parseMediaType("application/txt")).body(resource);
-            return responseEntity;
-        } catch (Exception e ) {
-            return new ResponseEntity<>("error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
-        } finally {
-            if(filewriter!=null)
-                filewriter.close();
-        }
-    }
-
-
-=======
-    */
->>>>>>> parent of a474f3b... we are able to generate blank word-docs but the sol is very bad since we cant download it first to the browser
-=======
-    }
-    */
->>>>>>> parent of a474f3b... we are able to generate blank word-docs but the sol is very bad since we cant download it first to the browser
 }
