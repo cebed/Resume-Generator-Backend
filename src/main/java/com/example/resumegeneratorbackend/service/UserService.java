@@ -64,6 +64,10 @@ public class UserService {
             //Username has to be unique(exception handler)
             newuser.setUsername(newuser.getUsername());
 
+            if(newuser.getUsername().equals("nurhusein11@gmail.com") || newuser.getUsername().equals("cebed@chalmers.se") ||newuser.getFullName().equals("Fredrik Lunde")){
+                newuser.setAdminOrUser(true);
+            }
+
             //We do not pesist or show the confirm password
             return usersRepository.save(newuser);
 
