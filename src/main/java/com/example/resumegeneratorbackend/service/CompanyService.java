@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyService {
@@ -17,13 +18,14 @@ public class CompanyService {
 
 
 
-    public List<Companies> getAll() {
+    public Iterable<Companies> getAll() {
 
         return companyRepository.findAll();
     }
 
 
     public Companies Register(Companies c) {
+
 
         return  companyRepository.save(c);
     }
@@ -34,7 +36,8 @@ public class CompanyService {
     public Companies updateCompany( Companies c, int id) {
         return companyRepository.findById(id)
                 .map(companies -> {
-                    companies.setName(c.getName());
+                    companies.setAddress(c.getAddress());
+                    companies.setGata(c.getGata());
                     return companyRepository.save(companies);
                 })
                 .orElseGet(() -> {
@@ -45,19 +48,8 @@ public class CompanyService {
     }
 
 
-    public Companies companiesById(int id){
-        Companies companies = new Companies();
-        for(Companies comp : getAll()){
-            if(comp.getCompanies_Id()==id){
-                companies = comp;
-            }
-        }
-        if(!companies.getCompanies_Id().equals(null)){
-
-            return companies;
-
-        }
-        else return null;
+    public Optional<Companies> companiesById(int id){
+       return companyRepository.findById(id);
     }
 
 

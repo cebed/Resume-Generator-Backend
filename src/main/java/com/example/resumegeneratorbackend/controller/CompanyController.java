@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -21,7 +22,7 @@ public class CompanyController {
 
 
     @GetMapping(value = "/all")
-    public List<Companies> getAll() {
+    public Iterable<Companies> getAll() {
 
         return companyService.getAll();
     }
@@ -29,15 +30,18 @@ public class CompanyController {
 
 
     @PostMapping("/register")
-    public Companies register(@Valid @RequestBody Companies companies){
+    public void register(@Valid @RequestBody Companies companies){
 
-        return  companyService.Register(companies);
+
+        System.out.println("------------------------------------------");
+
+        companyService.Register(companies);
 
     }
 
 
-    @GetMapping("/Companiesbyid/{id}")
-    public Companies CompaniesById( @PathVariable int id){
+    @GetMapping("/byId/{id}")
+    public Optional<Companies> CompaniesById(@PathVariable int id){
 
         return  companyService.companiesById(id);
 
@@ -58,7 +62,14 @@ public class CompanyController {
     public String deleteCompany(@PathVariable int id) {
         System.out.println("________________---------------------");
 
+
         return companyService.deleteCompany(id);
 
     }
+
+
+
+
+
+
 }

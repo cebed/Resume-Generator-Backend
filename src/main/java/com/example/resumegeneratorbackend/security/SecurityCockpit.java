@@ -6,7 +6,7 @@ package com.example.resumegeneratorbackend.security;
 public class SecurityCockpit {
 
     //constants
-    public static final String SIGN_UP_URLS = "/api/**";
+    public static final String SIGN_UP_URLS = "/**";
     public static final String SECRET ="SecretKeyToGenJWTs";
     public static final String TOKEN_PREFIX= "Bearer ";
     public static final String HEADER_STRING = "Authorization";

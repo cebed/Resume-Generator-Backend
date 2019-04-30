@@ -25,8 +25,14 @@ public class Companies {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "Address")
+    private String Address;
+    @Column(name = "gata")
+    private String gata;
+
+    @Column(name = "postno")
+    private String postno;
+
 
 
     public Integer getCompanies_Id() {
@@ -45,11 +51,19 @@ public class Companies {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAddress() {
+        return Address;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAddress(String address) {
+        Address = address;
+    }
+
+    public String getGata() {
+        return gata;
+    }
+
+    public void setGata(String gata) {
+        this.gata = gata;
     }
 }
