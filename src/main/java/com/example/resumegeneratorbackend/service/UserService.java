@@ -68,7 +68,7 @@ public class UserService {
             newuser.setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");
             newuser.setCurrentTitle("");
             newuser.setUserProfile("");
-            if(newuser.getUsername().equals("nurhusein11@gmail.com") || newuser.getUsername().equals("cebed@chalmers.se") ||newuser.getFullName().equals("Fredrik Lunde")){
+            if(newuser.getUsername().equals("nurhusein11@gmail.com") || newuser.getUsername().equals("cebed@chalmers.se") ||newuser.getUsername().equals("fredrik.lunde@frontedgeit.se")){
                 newuser.setAdminOrUser(true);
             }
 
