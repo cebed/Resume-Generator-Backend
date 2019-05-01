@@ -26,6 +26,14 @@ public class CompanyController {
 
     }
 
+    @GetMapping("/byId/{id}")
+    public Companies fetchById( @PathVariable int id){
+
+        return  companyService.companiessById(id);
+
+    }
+
+
 
 
 

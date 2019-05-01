@@ -46,6 +46,7 @@ public class WorkexperienceService {
                     Workexperience.setDescription(u.getDescription());
                     Workexperience.setEnd_date(u.getEnd_date());
                     Workexperience.setStart_date(u.getStart_date());
+                    Workexperience.setCompany(u.getCompany());
                     return workRepository.save(Workexperience);
                 })
                 .orElseGet(() -> {

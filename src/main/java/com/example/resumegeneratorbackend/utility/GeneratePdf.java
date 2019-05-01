@@ -120,7 +120,7 @@ public class GeneratePdf {
                     table.setWidths(new float[]{1, 4});
                     table.setSpacingAfter(20);
                     PdfPCell cellOne = new PdfPCell(new Phrase(workexperience.getStart_date(), normalfont));
-                    PdfPCell cellTwo = new PdfPCell(new Phrase("Företag1" + ", " + workexperience.getTitle(), normalfont));
+                    PdfPCell cellTwo = new PdfPCell(new Phrase(workexperience.getCompany() + ", " + workexperience.getTitle(), normalfont));
                     PdfPCell cellThree = new PdfPCell(new Phrase("-" + "\n" + workexperience.getEnd_date(), normalfont));
                     PdfPCell cellFour = new PdfPCell(new Phrase(workexperience.getDescription(), normalfont));
 

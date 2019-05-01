@@ -22,6 +22,8 @@ public class Workexperience {
 
     @Column(name = "title")
     private String title;
+    @Column(name = "company")
+    private String company;
     @Column(name = "start_date")
     private String start_date;
     @JsonFormat(pattern = "yyyy-mm-dd")
@@ -30,19 +32,7 @@ public class Workexperience {
     @JsonFormat(pattern = "yyyy-mm-dd")
     @Column(name = "description")
     private String description;
-/*
-    @JoinColumn(name = "USER_ID", referencedColumnName = "id")
-    @ManyToOne
-    private  Users USER_ID;
 
-    public Users getUSER_ID() {
-        return USER_ID;
-    }
-
-    public void setUSER_ID(Users USER_ID) {
-        this.USER_ID = USER_ID;
-    }
-*/
     public Integer getId() {
         return id;
     }
@@ -85,6 +75,13 @@ public class Workexperience {
         this.description = description;
     }
 
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
     public Integer getId_workExperience() {
         return id_workExperience;
