@@ -1,5 +1,6 @@
 package com.example.resumegeneratorbackend.controller;
 
+import com.example.resumegeneratorbackend.model.Companies;
 import com.example.resumegeneratorbackend.model.Users;
 
 
@@ -7,6 +8,7 @@ import com.example.resumegeneratorbackend.payloads.JWTLoginSuccessRes;
 import com.example.resumegeneratorbackend.payloads.LoginRequests;
 import com.example.resumegeneratorbackend.repository.UsersRepository;
 import com.example.resumegeneratorbackend.security.JwtTokenProvider;
+import com.example.resumegeneratorbackend.service.CompanyService;
 import com.example.resumegeneratorbackend.service.UserService;
 import com.example.resumegeneratorbackend.utility.GeneratePdf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,8 @@ public class UsersController {
 
     @Autowired
     private UserService userServices;
+    @Autowired
+    private CompanyService companyService;
 
     @Autowired
     private JwtTokenProvider tokenProvider;
@@ -121,8 +125,8 @@ public class UsersController {
     public ResponseEntity<InputStreamResource> pdfGeneration(@PathVariable Long id, Principal principal) throws IOException {
 
         Users users = userServices.findById(id, principal.getName());
-
-        ByteArrayInputStream bis = GeneratePdf.usersInfoPdf(users);
+        Companies com = companyService.companiessById(1);
+        ByteArrayInputStream bis = GeneratePdf.usersInfoPdf(users, com);
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
@@ -133,6 +137,39 @@ public class UsersController {
 
 
 
+
+
+    @RequestMapping(value="/download", method=RequestMethod.GET)
+    public ResponseEntity<Object> downloadFile() throws IOException  {
+        FileWriter filewriter =  null;
+        try {
+
+
+
+            String filename = "bismiallah.doxs";
+
+            filewriter = new FileWriter(filename);
+            filewriter.write("bismillah");
+            filewriter.flush();
+
+            File file = new File(filename);
+
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Disposition", String.format("attachment; filename=\"%s\"", file.getName()));
+            headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+            headers.add("Pragma", "no-cache");
+            headers.add("Expires", "0");
+
+            ResponseEntity<Object> responseEntity = ResponseEntity.ok().headers(headers).contentLength(file.length()).contentType(MediaType.parseMediaType("application/txt")).body(resource);
+            return responseEntity;
+        } catch (Exception e ) {
+            return new ResponseEntity<>("error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        } finally {
+            if(filewriter!=null)
+                filewriter.close();
+        }
+    }
 
 
 

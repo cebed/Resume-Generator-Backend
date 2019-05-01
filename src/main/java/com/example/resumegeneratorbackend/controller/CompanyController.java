@@ -19,53 +19,13 @@ public class CompanyController {
     private CompanyService companyService;
 
 
+    @PostMapping ("/update")
+    public Companies updateCompany(@RequestBody Companies c) {
 
-
-    @GetMapping(value = "/all")
-    public Iterable<Companies> getAll() {
-
-        return companyService.getAll();
-    }
-
-
-
-    @PostMapping("/register")
-    public void register(@Valid @RequestBody Companies companies){
-
-
-        System.out.println("------------------------------------------");
-
-        companyService.Register(companies);
+        return companyService.updateCompany(c , 1);
 
     }
 
-
-    @GetMapping("/byId/{id}")
-    public Optional<Companies> CompaniesById(@PathVariable int id){
-
-        return  companyService.companiesById(id);
-
-    }
-
-
-
-
-    @PutMapping ("/update/{id}")
-    public Companies updateCompany(@RequestBody Companies c, @PathVariable int id) {
-
-        return companyService.updateCompany(c , id);
-
-    }
-
-
-    @DeleteMapping  ("/delete/{id}")
-    public String deleteCompany(@PathVariable int id) {
-        System.out.println("________________---------------------");
-
-
-        return companyService.deleteCompany(id);
-
-    }
 
 
 

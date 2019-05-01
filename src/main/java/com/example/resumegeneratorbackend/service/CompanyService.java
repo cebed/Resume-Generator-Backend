@@ -38,6 +38,7 @@ public class CompanyService {
                 .map(companies -> {
                     companies.setAddress(c.getAddress());
                     companies.setGata(c.getGata());
+                    companies.setPostno(c.getPostno());
                     return companyRepository.save(companies);
                 })
                 .orElseGet(() -> {
@@ -48,21 +49,22 @@ public class CompanyService {
     }
 
 
-    public Optional<Companies> companiesById(int id){
-       return companyRepository.findById(id);
+    public Companies companiessById(int id){
+        Companies courses = new Companies();
+        for(Companies course : getAll()){
+            if(course.getCompanies_Id()==id){
+                courses = course;
+            }
+        }
+        if(!courses.getCompanies_Id().equals(null)){
+
+            return courses;
+
+        }
+        else return null;
     }
 
 
-
-
-
-    public String deleteCompany(Integer id) {
-
-
-        companyRepository.deleteById(id);
-        return "kaos";
-
-    }
 
 
 
