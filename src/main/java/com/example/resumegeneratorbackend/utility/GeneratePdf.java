@@ -91,17 +91,17 @@ public class GeneratePdf {
 
 
 
-
+            if(!users.getUserProfile().equals("")) {
             //document.add(new Paragraph("Title:\t" + users.getCurrentTitle(), userprofilefont ));
 
             Paragraph para1 = new Paragraph(users.getUserProfile(), userprofilefont);
 
             // Setting the space before and after the paragraph
             para1.setSpacingBefore(30);
-            if(!users.getUserProfile().equals("")) {
-                para1.add(new Chunk(users.getUserProfile()));
+
+                document.add(para1);
             }
-            document.add(para1);
+
             LineSeparator l = new LineSeparator(0.5f, 100, null, Element.ALIGN_CENTER, 0.5f);
             document.add(new Chunk(l));
 
