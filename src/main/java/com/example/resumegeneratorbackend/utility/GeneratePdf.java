@@ -47,6 +47,7 @@ public class GeneratePdf {
             Font userprofilefont= new Font(Font.FontFamily.TIMES_ROMAN,14);
 
 
+
             String imageUrl = "https://frontedgeit.se/wp-content/uploads/2018/04/primar-vit-u-tagline.png";
 
             Image image2 = Image.getInstance(new URL(imageUrl));
@@ -54,9 +55,6 @@ public class GeneratePdf {
 
             document.add(image2);
 
-            Image prophileImage = Image.getInstance(new URL(users.getImage()));
-            //prophileImage.setIndentationLeft(350);
-            prophileImage.scaleAbsolute(85,85);
 
             Phrase p = new Phrase();
             p.add( new Chunk(users.getFullName()+"\n", boldFont));
@@ -67,18 +65,26 @@ public class GeneratePdf {
 
             PdfPTable tableFirst = new PdfPTable(2);
             PdfPCell cellOne1 = new PdfPCell(p);
-            PdfPCell cellTwo2 = new PdfPCell(prophileImage);
-            cellTwo2.setHorizontalAlignment(Element.ALIGN_RIGHT);
-            //cellTwo2.setFixedHeight(100);
-            cellOne1.setBorder(Rectangle.NO_BORDER);
 
-            cellTwo2.setBorder(Rectangle.NO_BORDER);
+            if(users.getImage().length()!=0) {
+                Image prophileImage = Image.getInstance(new URL(users.getImage()));
+                //prophileImage.setIndentationLeft(350);
+                prophileImage.scaleAbsolute(85, 85);
 
 
-            tableFirst.setWidthPercentage(100);
-            tableFirst.addCell(cellOne1);
-            tableFirst.addCell(cellTwo2);
-            tableFirst.setSpacingBefore(15);
+                PdfPCell cellTwo2 = new PdfPCell(prophileImage);
+                cellTwo2.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                //cellTwo2.setFixedHeight(100);
+                cellOne1.setBorder(Rectangle.NO_BORDER);
+
+                cellTwo2.setBorder(Rectangle.NO_BORDER);
+
+
+                tableFirst.setWidthPercentage(100);
+                tableFirst.addCell(cellOne1);
+                tableFirst.addCell(cellTwo2);
+                tableFirst.setSpacingBefore(15);
+            }
             document.add(tableFirst);
 
 
