@@ -22,6 +22,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,6 +53,11 @@ public class UsersController {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
 
 
     @GetMapping(value = "/all")
@@ -100,6 +106,7 @@ public class UsersController {
                     users.setPhone(u.getPhone());
                     users.setUserProfile(u.getUserProfile());
                     users.setImage(u.getImage());
+                    users.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
                     return usersRepository.save(users);
                 })
                 .orElseGet(() -> {

@@ -39,8 +39,8 @@ public class FooterPageEvent extends PdfPageEventHelper {
 
 
 
-            ColumnText.showTextAligned(writer.getDirectContent(),Element.ALIGN_CENTER, new Phrase(c), rect.getLeft(57), rect.getBottom(5), 0);
-            ColumnText.showTextAligned(writer.getDirectContent(),Element.ALIGN_CENTER, new Phrase(c1), rect.getLeft(70), rect.getBottom(-8), 0);
+            ColumnText.showTextAligned(writer.getDirectContent(),Element.ALIGN_CENTER, new Phrase(c), rect.getLeft(60), rect.getBottom(5), 0);
+            ColumnText.showTextAligned(writer.getDirectContent(),Element.ALIGN_CENTER, new Phrase(c1), rect.getLeft(60), rect.getBottom(-8), 0);
             ColumnText.showTextAligned(writer.getDirectContent(),Element.ALIGN_CENTER, new Phrase(c2), rect.getLeft(60), rect.getBottom(-22), 0);
 
             //ColumnText.showTextAligned(writer.getDirectContent(),Element.ALIGN_CENTER, new Phrase("Bottom Right"), rect.getRight(), rect.getBottom(), 0);
