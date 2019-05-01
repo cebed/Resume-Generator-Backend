@@ -8,8 +8,24 @@ import java.util.logging.Logger;
 
 
 public class FooterPageEvent extends PdfPageEventHelper {
+    private String address;
+    private String  city;
+    private String postno;
 
-        public void onEndPage(PdfWriter writer,Document document) {
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setPostno(String postno) {
+        this.postno = postno;
+    }
+    public void onEndPage(PdfWriter writer, Document document) {
+
             Rectangle rect = writer.getBoxSize("art");
             Font footerfont = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.BOLD);
             Font footerfont1 = new Font(Font.FontFamily.TIMES_ROMAN, 10);
@@ -17,7 +33,7 @@ public class FooterPageEvent extends PdfPageEventHelper {
 
             Chunk c = new Chunk("FrontEdgeIT AB", footerfont);
             Chunk c1 = new Chunk("Anders Carlssons gata 14",footerfont1);
-            Chunk c2 = new Chunk("SE-417 55 Göteborg",footerfont1);
+            Chunk c2 = new Chunk("SE-"+postno+""+city ,footerfont1);
 
 
 

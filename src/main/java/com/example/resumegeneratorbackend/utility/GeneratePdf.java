@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class GeneratePdf {
 
 
-    public static ByteArrayInputStream usersInfoPdf(Users users) {
+    public static ByteArrayInputStream usersInfoPdf(Users users, Companies com) {
 
         Document document = new Document(PageSize.A4, 70f, 70f, 50f, 85f);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -34,6 +34,9 @@ public class GeneratePdf {
             Rectangle rect = new Rectangle(50, 50, 650, 900);
             writer.setBoxSize("art", rect);
             FooterPageEvent event = new FooterPageEvent();
+            event.setAddress(com.getAddress());
+            event.setCity(com.getGata());
+            event.setPostno(com.getPostno());
             writer.setPageEvent(event);
             document.open();
 

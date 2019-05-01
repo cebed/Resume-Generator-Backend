@@ -17,13 +17,12 @@ public class Companies {
     @Id
     @Getter
     @Setter
-    @GeneratedValue
+
     @Column(name = "companies_Id")
     private Integer companies_Id;
 
 
-    @Column(name = "id")
-    private Integer id;
+
 
     @Column(name = "Address")
     private String Address;
@@ -33,7 +32,13 @@ public class Companies {
     @Column(name = "postno")
     private String postno;
 
+    public String getPostno() {
+        return postno;
+    }
 
+    public void setPostno(String postno) {
+        this.postno = postno;
+    }
 
     public Integer getCompanies_Id() {
         return companies_Id;
@@ -43,13 +48,7 @@ public class Companies {
         this.companies_Id = companies_Id;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getAddress() {
         return Address;

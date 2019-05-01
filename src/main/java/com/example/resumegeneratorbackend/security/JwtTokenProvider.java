@@ -39,7 +39,7 @@ public class JwtTokenProvider {
         claims.put("username", users.getUsername());
         claims.put("fullName", users.getFullName());
         claims.put("address", users.getAddress());
-        claims.put("phone", users.getPhone());
+        claims.put("adminOrUser", users.isAdminOrUser());
         //throw roles here in future
 
         return Jwts.builder()

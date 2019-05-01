@@ -19,37 +19,6 @@ public class CompanyController {
     private CompanyService companyService;
 
 
-
-
-    @GetMapping(value = "/all")
-    public Iterable<Companies> getAll() {
-
-        return companyService.getAll();
-    }
-
-
-
-    @PostMapping("/register")
-    public void register(@Valid @RequestBody Companies companies){
-
-
-        System.out.println("------------------------------------------");
-
-        companyService.Register(companies);
-
-    }
-
-
-    @GetMapping("/byId/{id}")
-    public Optional<Companies> CompaniesById(@PathVariable int id){
-
-        return  companyService.companiesById(id);
-
-    }
-
-
-
-
     @PutMapping ("/update/{id}")
     public Companies updateCompany(@RequestBody Companies c, @PathVariable int id) {
 
