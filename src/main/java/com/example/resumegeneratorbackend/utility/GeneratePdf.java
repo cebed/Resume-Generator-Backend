@@ -58,16 +58,12 @@ public class GeneratePdf {
             //prophileImage.setIndentationLeft(350);
             prophileImage.scaleAbsolute(85,85);
 
-            if(!users.getFullName().isEmpty()) {
-                document.add(new Paragraph(users.getFullName(), boldFont));
-            }
-            if(!users.getCurrentTitle().equals("")) {
-                document.add(new Paragraph("Title:\t" + users.getCurrentTitle(), userprofilefont));
-            }
-
             Phrase p = new Phrase();
             p.add( new Chunk(users.getFullName()+"\n", boldFont));
+
+            if(!users.getCurrentTitle().equals("")) {
             p.add(new Chunk("Title:\t" + users.getCurrentTitle(), userprofilefont ));
+            }
 
             PdfPTable tableFirst = new PdfPTable(2);
             PdfPCell cellOne1 = new PdfPCell(p);

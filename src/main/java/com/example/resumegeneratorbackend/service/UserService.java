@@ -37,10 +37,11 @@ public class UserService {
 
     public Users findById(Long id, String username) {
         Users users = usersRepository.getById(id);
-        if (!users.getTheOwner().equals(username)&& users.isAdminOrUser()==true) {
-            System.out.println("You are not allowed to get this user");
+        if (!users.getUsername().equals(username)&& users.isAdminOrUser()==true)  {
+            System.out.println("Permission denied");
             return null;
         }
+
         return users;
     }
 
