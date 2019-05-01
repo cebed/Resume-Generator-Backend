@@ -18,8 +18,9 @@ public class Intilizefooter {
         // start your monitoring in here
 
         Companies companies = new Companies();
-        companies.setAddress("Anders Carlssons gata 14");
+
         companies.setCompanies_Id(1);
+        companies.setAddress("Anders Carlssons gata 14");
         companies.setGata("Göteborg"); // city så länge
         companies.setPostno("417 55");
 

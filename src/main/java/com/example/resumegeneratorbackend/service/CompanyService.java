@@ -38,6 +38,7 @@ public class CompanyService {
                 .map(companies -> {
                     companies.setAddress(c.getAddress());
                     companies.setGata(c.getGata());
+                    companies.setPostno(c.getPostno());
                     return companyRepository.save(companies);
                 })
                 .orElseGet(() -> {
@@ -64,16 +65,6 @@ public class CompanyService {
     }
 
 
-
-
-
-    public String deleteCompany(Integer id) {
-
-
-        companyRepository.deleteById(id);
-        return "kaos";
-
-    }
 
 
 

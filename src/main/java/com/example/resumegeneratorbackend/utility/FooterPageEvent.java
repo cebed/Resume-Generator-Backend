@@ -32,8 +32,8 @@ public class FooterPageEvent extends PdfPageEventHelper {
 
 
             Chunk c = new Chunk("FrontEdgeIT AB", footerfont);
-            Chunk c1 = new Chunk("Anders Carlssons gata 14",footerfont1);
-            Chunk c2 = new Chunk("SE-"+postno+""+city ,footerfont1);
+            Chunk c1 = new Chunk(address,footerfont1);
+            Chunk c2 = new Chunk("SE- "+ postno + " " + city ,footerfont1);
 
 
 

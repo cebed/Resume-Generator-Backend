@@ -19,22 +19,13 @@ public class CompanyController {
     private CompanyService companyService;
 
 
-    @PutMapping ("/update/{id}")
-    public Companies updateCompany(@RequestBody Companies c, @PathVariable int id) {
+    @PostMapping ("/update")
+    public Companies updateCompany(@RequestBody Companies c) {
 
-        return companyService.updateCompany(c , id);
-
-    }
-
-
-    @DeleteMapping  ("/delete/{id}")
-    public String deleteCompany(@PathVariable int id) {
-        System.out.println("________________---------------------");
-
-
-        return companyService.deleteCompany(id);
+        return companyService.updateCompany(c , 1);
 
     }
+
 
 
 
