@@ -52,22 +52,43 @@ public class GeneratePdf {
             document.add(image2);
 
 
-            document.add(new Paragraph(users.getFullName(), boldFont ));
-
-            document.add(new Paragraph("Title:\t" + users.getCurrentTitle(), userprofilefont ));
-
 
             Image prophileImage = Image.getInstance(new URL(users.getImage()));
-            prophileImage.scalePercent(20,20);
-            prophileImage.setIndentationLeft(350);
-            document.add(prophileImage);
+            //prophileImage.setIndentationLeft(350);
+            prophileImage.scaleAbsolute(85,85);
 
-            // Setting paragraph line spacing to 32
-            Paragraph para1 = new Paragraph();
+
+            Phrase p = new Phrase();
+            p.add( new Chunk(users.getFullName()+"\n", boldFont));
+            p.add(new Chunk("Title:\t" + users.getCurrentTitle(), userprofilefont ));
+
+            PdfPTable tableFirst = new PdfPTable(2);
+            PdfPCell cellOne1 = new PdfPCell(p);
+            PdfPCell cellTwo2 = new PdfPCell(prophileImage);
+            cellTwo2.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            //cellTwo2.setFixedHeight(100);
+            cellOne1.setBorder(Rectangle.NO_BORDER);
+
+            cellTwo2.setBorder(Rectangle.NO_BORDER);
+
+
+            tableFirst.setWidthPercentage(100);
+            tableFirst.addCell(cellOne1);
+            tableFirst.addCell(cellTwo2);
+            tableFirst.setSpacingBefore(15);
+            document.add(tableFirst);
+
+
+
+
+
+
+            //document.add(new Paragraph("Title:\t" + users.getCurrentTitle(), userprofilefont ));
+
+            Paragraph para1 = new Paragraph(users.getUserProfile(), userprofilefont);
 
             // Setting the space before and after the paragraph
             para1.setSpacingBefore(30);
-            para1.add(new Chunk(users.getUserProfile()));
             document.add(para1);
             LineSeparator l = new LineSeparator(0.5f, 100, null, Element.ALIGN_CENTER, 0.5f);
             document.add(new Chunk(l));
