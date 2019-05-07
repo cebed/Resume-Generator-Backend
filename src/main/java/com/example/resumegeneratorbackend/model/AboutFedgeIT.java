@@ -10,16 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Table(name = "Companies")
+@Table(name = "AboutFedgeIT")
 
-public class Companies {
+public class AboutFedgeIT {
 
     @Id
     @Getter
     @Setter
 
-    @Column(name = "companies_Id")
-    private Integer companies_Id;
+    @Column(name = "aboutFedgeIT_Id")
+    private Integer aboutFedgeIT_Id;
 
 
 
@@ -40,15 +40,13 @@ public class Companies {
         this.postno = postno;
     }
 
-    public Integer getCompanies_Id() {
-        return companies_Id;
+    public Integer getAboutFedgeIT_Id() {
+        return aboutFedgeIT_Id;
     }
 
-    public void setCompanies_Id(Integer companies_Id) {
-        this.companies_Id = companies_Id;
+    public void setAboutFedgeIT_Id(Integer aboutFedgeIT_Id) {
+        this.aboutFedgeIT_Id = aboutFedgeIT_Id;
     }
-
-
 
     public String getAddress() {
         return Address;

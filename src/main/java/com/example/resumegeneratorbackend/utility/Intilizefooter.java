@@ -1,8 +1,8 @@
 package com.example.resumegeneratorbackend.utility;
 
 
-import com.example.resumegeneratorbackend.model.Companies;
-import com.example.resumegeneratorbackend.service.CompanyService;
+import com.example.resumegeneratorbackend.model.AboutFedgeIT;
+import com.example.resumegeneratorbackend.service.AboutFedgeITService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,20 +11,20 @@ import javax.annotation.PostConstruct;
 @Component
 public class Intilizefooter {
     @Autowired
-    private CompanyService companyService;
+    private AboutFedgeITService aboutFedgeITService;
 
     @PostConstruct
     public void init(){
         // start your monitoring in here
 
-        Companies companies = new Companies();
+        AboutFedgeIT aboutFedgeIT = new AboutFedgeIT();
 
-        companies.setCompanies_Id(1);
-        companies.setAddress("Anders Carlssons gata 14");
-        companies.setGata("Göteborg"); // city så länge
-        companies.setPostno("417 55");
+        aboutFedgeIT.setAboutFedgeIT_Id(1);
+        aboutFedgeIT.setAddress("Anders Carlssons gata 14");
+        aboutFedgeIT.setGata("Göteborg"); // city så länge
+        aboutFedgeIT.setPostno("417 55");
 
-        companyService.Register(companies);
+        aboutFedgeITService.Register(aboutFedgeIT);
        // System.out.println("hej snygging");
 
 

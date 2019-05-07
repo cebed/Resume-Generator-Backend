@@ -100,7 +100,7 @@ public class Users implements UserDetails {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
-    private List<Companies> companies;
+    private List<AboutFedgeIT> aboutFedgeIT;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
@@ -163,12 +163,12 @@ public class Users implements UserDetails {
         this.skills = skills;
     }
 
-    public List<Companies> getCompanies() {
-        return companies;
+    public List<AboutFedgeIT> getAboutFedgeIT() {
+        return aboutFedgeIT;
     }
 
-    public void setCompanies(List<Companies> companies) {
-        this.companies = companies;
+    public void setAboutFedgeIT(List<AboutFedgeIT> aboutFedgeIT) {
+        this.aboutFedgeIT = aboutFedgeIT;
     }
 
     public String getUsername() {
