@@ -2,7 +2,7 @@ package com.example.resumegeneratorbackend.model;
 
 import javax.persistence.Entity;
 
-@Entity
+
 public class Emailh {
 
     private String fromEmail;
