@@ -1,19 +1,18 @@
 package com.example.resumegeneratorbackend.controller;
+import com.example.resumegeneratorbackend.model.ChangePassword;
 import com.example.resumegeneratorbackend.model.EmailData;
-import com.example.resumegeneratorbackend.model.Emailh;
 import com.example.resumegeneratorbackend.model.Users;
 import com.example.resumegeneratorbackend.repository.UsersRepository;
 import com.example.resumegeneratorbackend.service.SendGridService;
 import com.example.resumegeneratorbackend.service.UserService;
+import com.example.resumegeneratorbackend.utility.RandomString;
 import com.sendgrid.*;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 /**
@@ -24,6 +23,8 @@ import java.io.IOException;
  */
 
 @RestController
+@CrossOrigin
+@RequestMapping("api/email")
 public class MailController {
 
 
@@ -39,17 +40,28 @@ public class MailController {
         String response = sendGridService.sendMail(emailData);
         return response;
     }
-    @RequestMapping(value = "/emai/", method = RequestMethod.POST)
-    public String ind (Emailh email) throws IOException{
-        System.out.println("##############################" + email.getFromEmail());
+    @PostMapping("/pass")
+    public String ind (@RequestBody ChangePassword email ) throws IOException{
+
+        RandomString randomString = new RandomString();
+        String generatedValue = randomString.getAlphaNumericString(10);
+
+        Users users = usersService.findByEmail(email.getToEmail());
+
+       users.setPassword(generatedValue);
+       usersService.updateUserInformatio(users, users.getId());
+
+
+
+
 
         Email from = new Email();
         from.setEmail("Daniel_97_c@hotmail.com");
 
         Email to = new Email();
-       to.setEmail("nurhusein11@gmail.com");
+       to.setEmail(email.getToEmail());
         String subject = "Forgot password";
-        Content content = new Content("text/plain", "and easy to do anywhere, even with Java");
+        Content content = new Content("text/plain", generatedValue);
         Mail mail = new Mail(from, subject, to, content);
 
 
@@ -71,7 +83,6 @@ public class MailController {
 
         return "hej";
     }
-
 
 
 

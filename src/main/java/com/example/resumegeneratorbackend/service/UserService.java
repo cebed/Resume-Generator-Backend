@@ -30,9 +30,23 @@ public class UserService {
 
 
 
-    public Users saveOrUpdate(Users users){
-        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
-        return usersRepository.save((users));
+    public Users updateUserInformatio(Users u,  Long id){
+        return usersRepository.findById(id)
+                .map(users -> {
+                    users.setCurrentTitle(u.getCurrentTitle());
+                    users.setFullName(u.getFullName());
+                    users.setUsername(u.getUsername());
+                    users.setAddress(u.getAddress());
+                    users.setPhone(u.getPhone());
+                    users.setUserProfile(u.getUserProfile());
+                    users.setImage(u.getImage());
+                    users.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
+                    return usersRepository.save(users);
+                })
+                .orElseGet(() -> {
+                    u.setId(id);
+                    return usersRepository.save(u);
+                });
     }
 
     public Users findById(Long id, String username) {
@@ -46,6 +60,10 @@ public class UserService {
         return null;
     }
 
+    public Users findByEmail(String email){
+
+        return  usersRepository.findByUsername(email);
+    }
 
 
     /*
@@ -113,6 +131,9 @@ public class UserService {
         return null;
 
     }
+
+
+
 
 
 

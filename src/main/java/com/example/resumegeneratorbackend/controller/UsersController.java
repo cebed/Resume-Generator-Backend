@@ -96,23 +96,8 @@ public class UsersController {
     @PutMapping("/allusers/{id}")
     public Users updateUser(@RequestBody Users u, @PathVariable Long id) {
 
+                return userServices.updateUserInformatio(u,id);
 
-        return usersRepository.findById(id)
-                .map(users -> {
-                    users.setCurrentTitle(u.getCurrentTitle());
-                    users.setFullName(u.getFullName());
-                    users.setUsername(u.getUsername());
-                    users.setAddress(u.getAddress());
-                    users.setPhone(u.getPhone());
-                    users.setUserProfile(u.getUserProfile());
-                    users.setImage(u.getImage());
-                    users.setPassword(bCryptPasswordEncoder.encode(u.getPassword()));
-                    return usersRepository.save(users);
-                })
-                .orElseGet(() -> {
-                    u.setId(id);
-                    return usersRepository.save(u);
-                });
     }
 
 
