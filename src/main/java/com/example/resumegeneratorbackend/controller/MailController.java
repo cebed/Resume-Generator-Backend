@@ -26,13 +26,13 @@ public class MailController {
         users.setPassword(generatedValue);
         usersService.updateUserInformatio(users, users.getId());
         Email from = new Email();
-        from.setEmail("fredrik.lunde@frontedgeit.se");
+        from.setEmail("nurhusein11@gmail.com");
         Email to = new Email();
         to.setEmail(email.getToEmail());
         String subject = "Forgot password From Front Edge";
         Content content = new Content("text/plain", "Here is your code to login in Front-Ege IT Resume Page : \n" +generatedValue);
         Mail mail = new Mail(from, subject, to, content);
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
             request.setMethod(Method.POST);

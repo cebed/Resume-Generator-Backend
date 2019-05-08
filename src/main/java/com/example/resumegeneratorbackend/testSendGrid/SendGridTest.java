@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SendGridTest {
-    private final String SENDGRID_API_KEY = "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";
+    private final String SENDGRID_API_KEY = "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";
 
     public Map<String,String> buildDefaultHeaders() {
         SendGrid sg = new SendGrid(SENDGRID_API_KEY);
