@@ -32,7 +32,7 @@ public class MailController {
         String subject = "Forgot password From Front Edge";
         Content content = new Content("text/plain", "Here is your code to login in Front-Ege IT Resume Page : \n" +generatedValue);
         Mail mail = new Mail(from, subject, to, content);
-        SendGrid sg = new SendGrid("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");
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
