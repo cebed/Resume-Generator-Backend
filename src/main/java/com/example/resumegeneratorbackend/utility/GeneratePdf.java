@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class GeneratePdf {
 
 
-    public static ByteArrayInputStream usersInfoPdf(Users users, Companies com) {
+    public static ByteArrayInputStream usersInfoPdf(Users users, AboutFedgeIT com) {
 
         Document document = new Document(PageSize.A4, 70f, 70f, 50f, 85f);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
