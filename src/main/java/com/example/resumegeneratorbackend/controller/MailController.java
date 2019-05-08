@@ -26,7 +26,7 @@ public class MailController {
         users.setPassword(generatedValue);
         usersService.updateUserInformatio(users, users.getId());
         Email from = new Email();
-        from.setEmail("nurhusein11@gmail.com");
+        from.setEmail("fredrik.lunde@frontedgeit.se");
         Email to = new Email();
         to.setEmail(email.getToEmail());
         String subject = "Forgot password From Front Edge";
