@@ -1,10 +1,7 @@
 package com.example.resumegeneratorbackend.controller;
 
 import com.example.resumegeneratorbackend.model.ChangePassword;
-import com.example.resumegeneratorbackend.model.EmailData;
 import com.example.resumegeneratorbackend.model.Users;
-import com.example.resumegeneratorbackend.repository.UsersRepository;
-import com.example.resumegeneratorbackend.service.SendGridService;
 import com.example.resumegeneratorbackend.service.UserService;
 import com.example.resumegeneratorbackend.utility.RandomString;
 import com.sendgrid.*;
@@ -18,17 +15,9 @@ import java.io.IOException;
 @RequestMapping("api/email")
 public class MailController {
 
-    @Autowired
-    SendGridService sendGridService;
 
     @Autowired
     UserService usersService;
-
-    @RequestMapping(value = "/email/", method = RequestMethod.POST)
-    public String index(@RequestBody EmailData emailData) {
-        String response = sendGridService.sendMail(emailData);
-        return response;
-    }
 
     @PostMapping("/pass")
     public String ind(@RequestBody ChangePassword email) throws IOException {
