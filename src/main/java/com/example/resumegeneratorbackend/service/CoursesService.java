@@ -13,31 +13,17 @@ public class CoursesService {
 
     @Autowired
     private CoursesRepository coursesRepository;
-
-
-
-
-
     public List<Courses> getAll() {
-
         return coursesRepository.findAll();
     }
 
-
     public Courses Register(Courses courses) {
-
         return  coursesRepository.save(courses);
     }
-
-
-
-
     public Courses updateCourse( Courses u, int id) {
         return coursesRepository.findById(id)
                 .map(Courses -> {
                     Courses.setTitle(u.getTitle());
-                  //  Courses.setDescription(u.getDescription());
-                   // Courses.getStart_date(u.getEnd_date());
                    Courses.setStart_date(u.getStart_date());
                     return coursesRepository.save(u);
                 })
@@ -70,7 +56,7 @@ public class CoursesService {
 
 
         coursesRepository.deleteById(id);
-        return "kaos";
+        return "success to delete";
 
     }
 

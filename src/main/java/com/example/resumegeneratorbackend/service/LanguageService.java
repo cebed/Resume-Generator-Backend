@@ -6,8 +6,6 @@ import com.example.resumegeneratorbackend.repository.LanguageRepository;
 import com.example.resumegeneratorbackend.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,24 +25,19 @@ public class LanguageService {
     }
 
 
-
-
     public Languages Register(Languages lang, String username) {
-            Users users = usersRepository.findByUsername(username);
-            lang.setUsers(users);
-            lang.setOwner(users.getUsername());
-        return  languageRepository.save(lang);
+        Users users = usersRepository.findByUsername(username);
+        lang.setUsers(users);
+        lang.setOwner(users.getUsername());
+        return languageRepository.save(lang);
     }
 
-    public Optional<Languages> LanguageById(int id){
+    public Optional<Languages> LanguageById(int id) {
         return languageRepository.findById(id);
     }
 
 
-
-
-
-    public Languages updateLanguages( Languages l, int id) {
+    public Languages updateLanguages(Languages l, int id) {
         return languageRepository.findById(id)
                 .map(languages -> {
                     languages.setTitle(l.getTitle());
@@ -60,15 +53,10 @@ public class LanguageService {
 
 
     public String deleteLanguages(Integer id) {
-
-
         languageRepository.deleteById(id);
-        return "kaos";
+        return "success to delete  ";
 
     }
-
-
-
 
 
 }

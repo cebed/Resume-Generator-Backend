@@ -5,10 +5,5 @@ import com.example.resumegeneratorbackend.model.Courses;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CoursesRepository extends JpaRepository<Courses, Integer> {
-    Courses getById(int id);
-
-
-
-
 
 }

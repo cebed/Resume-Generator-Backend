@@ -9,10 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface EduRepository extends CrudRepository<Education, Integer> {
-
-    Education getById(int id);
-    //Education getByEducation_id(Integer id);
-
     @Override
     Optional<Education> findById(Integer integer);
 }

@@ -15,7 +15,7 @@ public class Intilizefooter {
 
     @PostConstruct
     public void init(){
-        // start your monitoring in here
+
 
         AboutFedgeIT aboutFedgeIT = new AboutFedgeIT();
 
@@ -25,7 +25,7 @@ public class Intilizefooter {
         aboutFedgeIT.setPostno("417 55");
 
         aboutFedgeITService.Register(aboutFedgeIT);
-       // System.out.println("hej snygging");
+
 
 
     }

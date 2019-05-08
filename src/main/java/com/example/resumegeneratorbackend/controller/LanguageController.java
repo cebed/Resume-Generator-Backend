@@ -18,48 +18,28 @@ public class LanguageController {
 
     @Autowired
     private LanguageService languageService;
-
-
-
-
     @GetMapping(value = "/all")
     public Iterable<Languages> getAll(Principal principal) {
-
         return languageService.getAll(principal.getName());
     }
 
-
-
     @PostMapping("/reg")
     public Languages register(@Valid @RequestBody Languages languages, Principal principal){
-
-
         return  languageService.Register(languages, principal.getName());
-
     }
-
-
-
     @PutMapping("/update/{id}")
     public Languages updateLanguages(@RequestBody Languages l, @PathVariable int id) {
-
         return languageService.updateLanguages(l , id);
-
     }
 
     @GetMapping("/LanguageById/{id}")
     public Optional<Languages> LanguageById(@PathVariable int id){
-        System.out.println("------------------------------------------------------------------");
         return  languageService.LanguageById(id);
-
     }
 
 
     @DeleteMapping  ("/delete/{id}")
     public String deleteLanguages(@PathVariable int id) {
-        System.out.println("________________---------------------");
-
         return languageService.deleteLanguages(id);
-
     }
 }

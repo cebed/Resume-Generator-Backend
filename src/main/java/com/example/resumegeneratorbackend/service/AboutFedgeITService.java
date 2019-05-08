@@ -10,25 +10,15 @@ public class AboutFedgeITService {
 
     @Autowired
     private AboutFedgeITRepository aboutFedgeITRepository;
-
-
-
-
-
     public Iterable<AboutFedgeIT> getAll() {
 
         return aboutFedgeITRepository.findAll();
     }
-
-
     public AboutFedgeIT Register(AboutFedgeIT aboutFedgeIT) {
 
 
-        return  aboutFedgeITRepository.save(aboutFedgeIT);
+        return aboutFedgeITRepository.save(aboutFedgeIT);
     }
-
-
-
 
     public AboutFedgeIT updateFedgeIT(AboutFedgeIT a, int id) {
         return aboutFedgeITRepository.findById(id)
@@ -42,27 +32,20 @@ public class AboutFedgeITService {
                     a.setAboutFedgeIT_Id(id);
                     return aboutFedgeITRepository.save(a);
                 });
-
     }
 
-
-    public AboutFedgeIT fEdgeById(int id){
+    public AboutFedgeIT fEdgeById(int id) {
         AboutFedgeIT aboutFedgeIT = new AboutFedgeIT();
-        for(AboutFedgeIT fedgeIT : getAll()){
-            if(fedgeIT.getAboutFedgeIT_Id()==id){
+        for (AboutFedgeIT fedgeIT : getAll()) {
+            if (fedgeIT.getAboutFedgeIT_Id() == id) {
                 aboutFedgeIT = fedgeIT;
             }
         }
-        if(!aboutFedgeIT.getAboutFedgeIT_Id().equals(null)){
+        if (!aboutFedgeIT.getAboutFedgeIT_Id().equals(null)) {
 
             return aboutFedgeIT;
 
-        }
-        else return null;
+        } else return null;
     }
-
-
-
-
 
 }

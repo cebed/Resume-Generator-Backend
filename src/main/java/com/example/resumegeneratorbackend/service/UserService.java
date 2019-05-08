@@ -20,11 +20,6 @@ public class UserService {
 
     @Autowired
     private UsersRepository usersRepository;
-
-    /*
-    Service that spring security offers to Encrypt the password so nothing is readable
-    No one should be able to go to database and se the password
-     */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -53,7 +48,6 @@ public class UserService {
         Users users = usersRepository.getById(id);
         Users isadmin = usersRepository.findByUsername(username);
         if (users.getUsername().equals(username) || isadmin.isAdminOrUser()==true)  {
-            System.out.println("Permission ");
             return users;
         }
 
@@ -61,42 +55,25 @@ public class UserService {
     }
 
     public Users findByEmail(String email){
-
         return  usersRepository.findByUsername(email);
     }
 
 
-    /*
-    This method takes a user, I mean the new user that we are going to create
-     */
-
 
     public Users saveUser(Users newuser){
-
-
-
         try{
 
             newuser.setTheOwner(newuser.getUsername());
-            //this encryptes the password
             newuser.setPassword(bCryptPasswordEncoder.encode(newuser.getPassword()));
-
-            //Username has to be unique(exception handler)
             newuser.setUsername(newuser.getUsername());
             newuser.setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");
             newuser.setCurrentTitle("");
             newuser.setUserProfile("");
-            if(newuser.getUsername().equals("nurhusein11@gmail.com") || newuser.getUsername().equals("cebed@chalmers.se") ||newuser.getUsername().equals("fredrik.lunde@frontedgeit.se")){
-                newuser.setAdminOrUser(true);
-            }
-
-            //We do not pesist or show the confirm password
             return usersRepository.save(newuser);
 
         }catch (Exception ex){
             throw new UsernameOrEmailExistException("Username ' " + newuser.getUsername()+ " ' already exist");
         }
-
     }
 
     public Iterable<Users> getAllUsers(String username) {
@@ -106,19 +83,12 @@ public class UserService {
         {
             System.out.println("You are not allowed to get all users");
             return null;
-
         }
-
         return usersRepository.findAll();
     }
 
 
-    /*
-        This method returns a better error respone
-        Can be called in controller class.
-     */
     public ResponseEntity<?> StoreValidationErrorService(BindingResult result){
-
         if(result.hasErrors()){
             Map<String, String> errorMap = new HashMap<>();
 
@@ -127,14 +97,7 @@ public class UserService {
             }
             return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
     }
-
         return null;
-
     }
-
-
-
-
-
 
 }

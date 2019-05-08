@@ -58,6 +58,4 @@ public class MailController {
         }
         return "success to send an email";
     }
-
-
 }

@@ -21,24 +21,15 @@ public class WorkexperienceService {
     @Autowired
     private WorkRepository workRepository;
 
-
-
-
-
     public List<Workexperience> getAll() {
 
         return workRepository.findAll();
     }
 
-
     public Workexperience Register(Workexperience workexperience) {
 
         return  workRepository.save(workexperience);
     }
-
-
-
-
     public Workexperience updateWorkEx( Workexperience u, int id) {
         return workRepository.findById(id)
                 .map(Workexperience -> {
@@ -64,19 +55,14 @@ public class WorkexperienceService {
             }
        }
        if(!workexperiences.getId_workExperience().equals(null)){
-            System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj" +workexperiences.getId_workExperience() );
            return workexperiences;
-
        }
        else return null;
     }
 
-
     public String deleteWorExpeience(Integer id) {
-
-
         workRepository.deleteById(id);
-        return "kaos";
+        return "success to delete";
 
     }
 

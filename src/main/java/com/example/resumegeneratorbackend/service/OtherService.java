@@ -4,8 +4,6 @@ import com.example.resumegeneratorbackend.model.Others;
 import com.example.resumegeneratorbackend.repository.OtherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,7 +17,6 @@ public class OtherService {
 
         return otherRepository.findAll();
     }
-
 
     public Others Register(Others others) {
 
@@ -42,20 +39,12 @@ public class OtherService {
                     o.setOthers_Id(id);
                     return otherRepository.save(o);
                 });
-
     }
 
 
     public String deleteOthers(Integer id) {
-
-
         otherRepository.deleteById(id);
-        return "kaos";
+        return "success  to delete";
 
     }
-
-
-
-
-
 }

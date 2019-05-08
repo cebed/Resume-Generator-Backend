@@ -19,49 +19,28 @@ public class CoursesController {
     @Autowired
     private CoursesService coursesService;
 
-
-
-
     @GetMapping(value = "/all")
     public List<Courses> getAll() {
-
         return coursesService.getAll();
     }
-
-
-
     @PostMapping("/register")
     public Courses registe(@Valid @RequestBody Courses courses){
-
         return  coursesService.Register(courses);
-
     }
-
 
     @GetMapping("/Coursesebyid/{id}")
     public Courses CourseseById( @PathVariable int id){
-
         return  coursesService.coursesById(id);
-
     }
-
-
-
 
     @PutMapping ("/update/{id}")
     public Courses updateWorkEx(@RequestBody Courses u, @PathVariable int id) {
-
-       return coursesService.updateCourse(u , id);
-
+        return coursesService.updateCourse(u , id);
     }
-
 
     @DeleteMapping  ("/delete/{id}")
     public String deleteWorExpeience(@PathVariable int id) {
-        System.out.println("________________---------------------");
-
         return coursesService.deleteWorExpeience(id);
-
     }
 
 }

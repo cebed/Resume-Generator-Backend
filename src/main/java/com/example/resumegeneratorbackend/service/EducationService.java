@@ -14,24 +14,20 @@ public class EducationService {
     private EduRepository educationRepository;
 
     public Iterable<Education> getAll() {
-
         return educationRepository.findAll();
     }
 
 
     public Education Register(Education Education) {
 
-        return  educationRepository.save(Education);
+        return educationRepository.save(Education);
     }
 
-
-
-
-    public Education updateCourse( Education u, int id) {
+    public Education updateCourse(Education u, int id) {
         return educationRepository.findById(id)
                 .map(Education -> {
                     Education.setTitle(u.getTitle());
-                     Education.setDescription(u.getDescription());
+                    Education.setDescription(u.getDescription());
                     Education.setEnd_date(u.getEnd_date());
                     Education.setStart_date(u.getStart_date());
                     return educationRepository.save(u);
@@ -44,27 +40,15 @@ public class EducationService {
     }
 
 
-
-    public Optional<Education> EducationById(int id){
-       return educationRepository.findById(id);
+    public Optional<Education> EducationById(int id) {
+        return educationRepository.findById(id);
     }
 
-
     public String deleteWorExpeience(Integer id) {
-
-
         educationRepository.deleteById(id);
         return "kaos";
 
     }
-
-
-
-
-
-
-
-
 
 
 }
