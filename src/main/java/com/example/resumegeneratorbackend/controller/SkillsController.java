@@ -15,54 +15,32 @@ import java.util.Optional;
 @RequestMapping("api/skills")
 public class SkillsController {
 
-
-
-
-
     @Autowired
     private SkillsService skillsService;
 
-
-
-
     @GetMapping(value = "/all")
     public Iterable<Skills> getAll() {
-
         return skillsService.getAll();
     }
 
-
-
     @PostMapping("/reg")
     public Skills register(@Valid @RequestBody Skills skills){
-
-
         return  skillsService.Register(skills);
-
     }
-
-
 
     @PutMapping("/update/{id}")
     public Skills updateOthers(@RequestBody Skills s, @PathVariable int id) {
-
         return skillsService.updateSkills(s , id);
-
     }
 
     @GetMapping("/getSkillsById/{id}")
     public Optional<Skills> skillsById(@PathVariable int id){
-        System.out.println("------------------------------------------------------------------");
         return  skillsService.skillsById(id);
-
     }
 
 
     @DeleteMapping  ("/delete/{id}")
     public String deleteSkills(@PathVariable int id) {
-        System.out.println("________________---------------------");
-
         return skillsService.deleteSkills(id);
-
     }
 }

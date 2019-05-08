@@ -19,46 +19,32 @@ public class OthersController {
     private OtherService otherService;
 
 
-
-
     @GetMapping(value = "/all")
     public Iterable<Others> getAll() {
-
         return otherService.getAll();
     }
 
 
     @GetMapping("/getOthersById/{id}")
-    public Optional<Others> otherCompetencesById(@PathVariable int id){
-        //System.out.println("------------------------------------------------------------------");
+    public Optional<Others> otherCompetencesById(@PathVariable int id) {
         return otherService.otherCompetencesById(id);
 
     }
 
-
-
     @PostMapping("/reg")
-    public Others register(@Valid @RequestBody Others othr){
-
-
-        return  otherService.Register(othr);
+    public Others register(@Valid @RequestBody Others othr) {
+        return otherService.Register(othr);
 
     }
-
-
 
     @PutMapping("/update/{id}")
     public Others updateOthers(@RequestBody Others o, @PathVariable int id) {
-
-        return otherService.updateOthers(o , id);
-
+        return otherService.updateOthers(o, id);
     }
 
 
-    @DeleteMapping  ("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
-        System.out.println("________________---------------------");
-
         return otherService.deleteOthers(id);
 
     }

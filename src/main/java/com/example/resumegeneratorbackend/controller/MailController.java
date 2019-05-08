@@ -1,4 +1,5 @@
 package com.example.resumegeneratorbackend.controller;
+
 import com.example.resumegeneratorbackend.model.ChangePassword;
 import com.example.resumegeneratorbackend.model.EmailData;
 import com.example.resumegeneratorbackend.model.Users;
@@ -11,22 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.validation.Valid;
 import java.io.IOException;
-
-/**
- * Simple Controller class to handle HTTP request.
- *
- * @author Daniel Cebe
- *
- */
-
 @RestController
 @CrossOrigin
 @RequestMapping("api/email")
 public class MailController {
-
 
     @Autowired
     SendGridService sendGridService;
@@ -34,38 +24,25 @@ public class MailController {
     @Autowired
     UserService usersService;
 
-
     @RequestMapping(value = "/email/", method = RequestMethod.POST)
     public String index(@RequestBody EmailData emailData) {
         String response = sendGridService.sendMail(emailData);
         return response;
     }
+
     @PostMapping("/pass")
-    public String ind (@RequestBody ChangePassword email ) throws IOException{
-
-        RandomString randomString = new RandomString();
-        String generatedValue = randomString.getAlphaNumericString(10);
-
+    public String ind(@RequestBody ChangePassword email) throws IOException {
+        String generatedValue = RandomString.getAlphaNumericString(10);
         Users users = usersService.findByEmail(email.getToEmail());
-
-       users.setPassword(generatedValue);
-       usersService.updateUserInformatio(users, users.getId());
-
-
-
-
-
+        users.setPassword(generatedValue);
+        usersService.updateUserInformatio(users, users.getId());
         Email from = new Email();
-        from.setEmail("Daniel_97_c@hotmail.com");
-
+        from.setEmail("fredrik.lunde@frontedgeit.se");
         Email to = new Email();
-       to.setEmail(email.getToEmail());
-        String subject = "Forgot password";
-        Content content = new Content("text/plain", generatedValue);
+        to.setEmail(email.getToEmail());
+        String subject = "Forgot password From Front Edge";
+        Content content = new Content("text/plain", "Here is your code to login in Front-Ege IT Resume Page : \n" +generatedValue);
         Mail mail = new Mail(from, subject, to, content);
-
-
-
         SendGrid sg = new SendGrid("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");
         Request request = new Request();
         try {
@@ -79,13 +56,8 @@ public class MailController {
         } catch (IOException ex) {
             throw ex;
         }
-
-
-        return "hej";
+        return "success to send an email";
     }
-
-
-
 
 
 }
