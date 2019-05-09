@@ -19,6 +19,9 @@ public class MailController {
     @Autowired
     UserService usersService;
 
+    @Autowired
+    SendGrid sendGrid;
+
     @PostMapping("/pass")
     public String ind(@RequestBody ChangePassword email) throws IOException {
         String generatedValue = RandomString.getAlphaNumericString(10);
@@ -26,19 +29,18 @@ public class MailController {
         users.setPassword(generatedValue);
         usersService.updateUserInformatio(users, users.getId());
         Email from = new Email();
-        from.setEmail("fredrik.lunde@frontedgeit.se");
+        from.setEmail("Daniel_97_c@hotmail.com");
         Email to = new Email();
         to.setEmail(email.getToEmail());
         String subject = "Forgot password From Front Edge";
         Content content = new Content("text/plain", "Here is your code to login in Front-Ege IT Resume Page : \n" +generatedValue);
         Mail mail = new Mail(from, subject, to, content);
-        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
-            Response response = sg.api(request);
+            Response response = sendGrid.api(request);
             System.out.println(response.getStatusCode());
             System.out.println(response.getBody());
             System.out.println(response.getHeaders());
