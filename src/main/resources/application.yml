@@ -1,10 +1,12 @@
 spring:
+  sendgrid:
+    api-key: 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
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://aayira9igsl97b.c8nbcjdtf2k8.eu-central-1.rds.amazonaws.com/innodb
+    url: jdbc:mysql://database-1.cuhciktf07oe.us-east-1.rds.amazonaws.com/frontedge
 
-    username: root
-    password: nurhusein
+    username: admin
+    password: 117028Nur
 
   jpa:
     hibernate.ddl-auto: update
@@ -12,3 +14,4 @@ spring:
     show-sql: true
 server:
   port: 5005
+

@@ -30,8 +30,6 @@ HELP.md
 **/application-dev.yml
 src/main/resources/application-dev.yml
 application-dev.yml
-"sendgrid.env" 
+
 sendgrid.env
-"sendgrid.env" 
-"sendgrid.env" 
 sendgrid.env

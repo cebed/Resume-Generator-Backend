@@ -1,8 +1,4 @@
 package com.example.resumegeneratorbackend.model;
-
-//import lombok.Getter;
-//import lombok.Setter;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,96 +8,53 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.List;
-
-//needs to implement the UserDetails interface so that we can use it for some of the validation steps and the authorization steps
 @Entity
 public class Users implements UserDetails {
-// kan vi ändra detta col till users_id istället// missförstånd på andra klasser
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
-
     @Column
     private String currentTitle;
-
-
-
     @NotBlank(message = "Please enter full name")
     @Column(name = "fullName")
     private String fullName;
-
-
-
     @Email(message = "Username needs to be an email")
     @NotBlank(message = "Email is required")
     @Column(unique = true, length = 250)
     private String username;//this instance represents the email of the user
-
-
     @NotBlank(message = "Password is required")
     @Column(name = "password")
     private String password;
-
-
     @Column(name="Address")
     private String address;
-
-
     @Column(name = "PHONE")
     private String phone;
-
     @Column(name = "ADMINORUSER")
     private boolean adminOrUser;
-
-    public boolean isAdminOrUser() {
-        return adminOrUser;
-    }
-
-    public void setAdminOrUser(boolean adminOrUser) {
-        this.adminOrUser = adminOrUser;
-    }
-
-    public String getImage() {
-        return Image;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
-
     @Column(name = "UserProfile")
     private String userProfile;
-
     @Column(name = "Image")
     private String Image;
-
     private String theOwner;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Workexperience> workExperience;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Courses> courses;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Education> educations;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Others> others;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Skills> skills;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<AboutFedgeIT> aboutFedgeIT;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private List<Languages> languages;
@@ -111,6 +64,20 @@ public class Users implements UserDetails {
     //Constructor
     public Users(){
 
+    }
+    public String getImage() {
+        return Image;
+    }
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public boolean isAdminOrUser() {
+        return adminOrUser;
+    }
+
+    public void setAdminOrUser(boolean adminOrUser) {
+        this.adminOrUser = adminOrUser;
     }
 
     public String getTheOwner() {

@@ -65,6 +65,7 @@ public class UserService {
 
             newuser.setTheOwner(newuser.getUsername());
             newuser.setPassword(bCryptPasswordEncoder.encode(newuser.getPassword()));
+            newuser.setAdminOrUser(true);
             newuser.setUsername(newuser.getUsername());
             newuser.setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png");
             newuser.setCurrentTitle("");

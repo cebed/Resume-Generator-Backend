@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 
 @Component
 public class Intilizefooter {
@@ -27,6 +28,7 @@ public class Intilizefooter {
         aboutFedgeITService.Register(aboutFedgeIT);
 
 
-
+        File file = new File("sendgrid.env");
+        System.out.println(System.getenv("$SEND"));
     }
 }

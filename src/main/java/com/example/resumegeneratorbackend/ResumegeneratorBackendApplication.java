@@ -18,6 +18,7 @@ public class ResumegeneratorBackendApplication {
     }
     public static void main(String[] args) {
         SpringApplication.run(ResumegeneratorBackendApplication.class, args);
+
     }
 
 
